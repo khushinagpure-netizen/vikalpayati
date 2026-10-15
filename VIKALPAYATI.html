@@ -1,0 +1,2441 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIKALPAYATI by Vishakha — Custom · Crafted · Timeless</title>
+<style>
+/* ============================================================
+   VIKALPAYATI by Vishakha — Couture Design System
+   Palette: deep wine · antique gold + champagne · blush rose · warm ivory/cream.
+   A premium bridal-boutique aesthetic: soft radial glows, gold hairlines,
+   clip-text gradients, glassy navbar, graceful hover lifts, fade-up entrances.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap');
+
+:root{
+  /* wine */
+  --maroon:#6d1327; --maroon-dark:#581024; --maroon-deep:#43091a;
+  /* gold + champagne */
+  --gold:#c79a3a; --gold-soft:#e6cf94; --gold-deep:#a9772a; --champagne:#f1e2c0;
+  /* ivory / cream / paper */
+  --cream:#faf5ec; --cream-2:#f3e8d8; --paper:#fdfaf3;
+  /* ink */
+  --ink:#2b1b1f; --ink-soft:#7a6a63; --line:#ecdfcd;
+  /* blush / rose accents */
+  --rose:#f6e3e4; --rose-2:#efc9cf; --blush:#f9ecee;
+  /* status */
+  --ok:#1f7a4d; --warn:#b4651a; --bad:#a6271f;
+  /* warm-tinted layered shadows */
+  --shadow:0 2px 6px rgba(67,9,26,.05), 0 12px 30px rgba(67,9,26,.09);
+  --shadow-lg:0 6px 16px rgba(67,9,26,.10), 0 26px 56px rgba(67,9,26,.17);
+  --shadow-gold:0 10px 28px rgba(169,119,42,.22);
+  --radius:18px; --radius-sm:12px;
+  --grad-wine:linear-gradient(135deg,var(--maroon-deep),var(--maroon) 55%,var(--gold-deep));
+  --grad-heading:linear-gradient(100deg,var(--maroon) 0%,var(--maroon-dark) 38%,var(--gold-deep) 100%);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.65;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.14;margin:0 0 .4em;letter-spacing:.3px}
+h1{font-size:clamp(2.2rem,5vw,3.7rem)}
+h2{font-size:clamp(1.7rem,3.5vw,2.7rem)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--rose-2);color:var(--maroon-deep)}
+.muted{color:var(--ink-soft)}
+.container{max-width:1200px;margin:0 auto;padding:0 22px}
+.section{padding:76px 0}
+.center{text-align:center}
+.eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:4px;font-size:.72rem;color:var(--gold-deep);font-weight:600;
+  margin-bottom:10px;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before,.eyebrow::after{content:"";height:1px;width:26px;background:linear-gradient(90deg,transparent,var(--gold-soft))}
+.eyebrow::after{background:linear-gradient(90deg,var(--gold-soft),transparent)}
+.section-head .eyebrow,.center .eyebrow{justify-content:center}
+.script{font-style:italic;font-family:var(--serif);color:var(--maroon)}
+.divider-heart{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);margin:16px 0;font-size:1.05rem}
+.divider-heart::before,.divider-heart::after{content:"";height:1px;width:64px;
+  background:linear-gradient(90deg,transparent,var(--gold-soft),var(--gold))}
+.divider-heart::after{background:linear-gradient(90deg,var(--gold),var(--gold-soft),transparent)}
+
+/* ---------- gradient clip-text on big headings ---------- */
+.section-head h2,.shop-head h2{
+  background:var(--grad-heading);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:var(--maroon)}
+
+/* ---------- buttons (pill, subtle sheen, graceful lift) ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--sans);
+  font-weight:500;font-size:.95rem;padding:13px 28px;border-radius:50px;border:1.5px solid transparent;
+  cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.3,1),box-shadow .25s,background .25s,color .25s,filter .25s,border-color .25s;
+  letter-spacing:.4px;background:none;line-height:1;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;opacity:0;transition:opacity .35s;
+  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.22) 50%,transparent 80%)}
+.btn:hover::after{opacity:1}
+.btn-primary{background:linear-gradient(140deg,var(--maroon) 0%,var(--maroon-deep) 100%);color:#fff;box-shadow:0 8px 20px rgba(109,19,39,.26)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(109,19,39,.36)}
+.btn-gold{background:linear-gradient(135deg,var(--gold-soft) 0%,var(--gold) 45%,var(--gold-deep) 100%);color:#43290a;box-shadow:var(--shadow-gold)}
+.btn-gold:hover{filter:brightness(1.06) saturate(1.05);transform:translateY(-2px);box-shadow:0 16px 34px rgba(169,119,42,.3)}
+.btn-outline{border-color:var(--maroon);color:var(--maroon);background:#fff}
+.btn-outline:hover{background:var(--maroon);color:#fff;transform:translateY(-2px);box-shadow:0 12px 26px rgba(109,19,39,.22)}
+.btn-ghost{color:var(--maroon)}
+.btn-ghost:hover{background:var(--rose)}
+.btn-block{width:100%}
+.btn-sm{padding:8px 16px;font-size:.85rem}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn:disabled::after{opacity:0}
+
+/* ---------- navbar (glassy translucent, gold hairline) ---------- */
+[data-navbar]{position:sticky;top:0;z-index:50;background:rgba(253,250,243,.72);
+  -webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);
+  border-bottom:1px solid rgba(199,154,58,.28);box-shadow:0 2px 20px rgba(67,9,26,.05)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:13px 22px;display:flex;align-items:center;gap:22px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{color:var(--gold);font-size:1.45rem;filter:drop-shadow(0 1px 2px rgba(169,119,42,.35))}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-text strong{font-family:var(--serif);font-size:1.42rem;letter-spacing:3px;color:var(--maroon)}
+.brand-text em{font-family:var(--serif);font-style:italic;font-size:.8rem;color:var(--gold-deep)}
+.nav-links{display:flex;gap:26px;margin-left:auto}
+.nav-links a{font-size:.92rem;font-weight:500;color:var(--ink);position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;border-radius:2px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-deep));transition:width .28s cubic-bezier(.2,.8,.3,1)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a:hover{color:var(--maroon)}
+.nav-links a.active{color:var(--maroon)}
+.nav-actions{display:flex;align-items:center;gap:6px}
+.icon-btn{position:relative;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;color:var(--maroon);transition:.2s}
+.icon-btn:hover{background:var(--rose);transform:translateY(-1px)}
+.cart-badge{position:absolute;top:2px;right:2px;background:linear-gradient(135deg,var(--gold-soft),var(--gold-deep));color:#43290a;font-size:.66rem;font-weight:700;
+  min-width:17px;height:17px;border-radius:50px;display:flex;align-items:center;justify-content:center;padding:0 4px;box-shadow:0 2px 6px rgba(169,119,42,.4)}
+.hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:8px}
+.hamburger span{width:22px;height:2px;background:var(--maroon);border-radius:2px}
+
+/* ---------- hero (soft radial glows + gold paisley motif) ---------- */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(900px 440px at 88% -8%,rgba(199,154,58,.20),transparent 70%),
+  radial-gradient(760px 500px at 6% 108%,rgba(239,201,207,.42),transparent 68%),
+  radial-gradient(600px 400px at 50% 50%,rgba(250,245,236,.6),transparent),
+  linear-gradient(135deg,var(--cream) 0%,var(--blush) 45%,var(--rose) 100%)}
+/* delicate gold paisley/leaf motif — pure CSS SVG data-URI, no external asset */
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'><g fill='none' stroke='%23c79a3a' stroke-width='1.1' opacity='0.5'><path d='M45 20c22 0 40 18 40 40 0 24-20 44-44 44a10 10 0 010-20c13 0 24-11 24-24 0-11-9-20-20-20a4 4 0 010-8z'/><circle cx='45' cy='40' r='4'/><path d='M135 90c22 0 40 18 40 40 0 24-20 44-44 44a10 10 0 010-20c13 0 24-11 24-24 0-11-9-20-20-20a4 4 0 010-8z'/><circle cx='135' cy='110' r='4'/><path d='M90 70q14 10 0 24 -14-14 0-24z'/></g></svg>");
+  background-size:200px 200px;
+  -webkit-mask-image:radial-gradient(130% 120% at 85% 0%,#000 30%,transparent 72%);
+  mask-image:radial-gradient(130% 120% at 85% 0%,#000 30%,transparent 72%)}
+.hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:78px 22px;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.hero-copy .lotus{color:var(--gold);font-size:2.1rem;margin-bottom:6px;filter:drop-shadow(0 2px 4px rgba(169,119,42,.3))}
+.hero-copy h1{margin:.1em 0}
+.hero-copy .going{font-family:var(--serif);font-size:clamp(2rem,6vw,3.5rem);color:var(--maroon-deep);font-style:italic;line-height:1.05}
+.hero-copy .going b{color:var(--maroon);font-size:1.3em;display:inline-block;
+  background:linear-gradient(120deg,var(--maroon),var(--gold-deep));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-copy .atdoor{font-family:var(--serif);font-size:1.6rem;color:var(--ink)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.hero-contact{margin-top:28px;display:flex;flex-direction:column;gap:10px}
+.hero-contact a{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.78);border:1px solid rgba(199,154,58,.35);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  padding:11px 18px;border-radius:50px;font-weight:600;color:var(--maroon);box-shadow:var(--shadow);width:fit-content;transition:.22s}
+.hero-contact a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+.hero-contact .chip-ic{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
+.hero-contact .wa{background:#25d366}.hero-contact .ph{background:var(--maroon)}
+.hero-art{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);
+  background:var(--grad-wine);display:flex;align-items:center;justify-content:center}
+.hero-art::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(420px 320px at 25% 12%,rgba(230,207,148,.4),transparent 60%),
+  radial-gradient(300px 300px at 90% 95%,rgba(246,227,228,.2),transparent 60%)}
+.hero-art::after{content:"";position:absolute;inset:12px;border:1px solid rgba(230,207,148,.45);border-radius:calc(var(--radius) - 6px);pointer-events:none}
+.hero-art .plaque{position:relative;z-index:1;text-align:center;color:#fff;padding:30px}
+.hero-art .plaque .big{font-family:var(--serif);font-size:3rem;letter-spacing:6px;
+  background:linear-gradient(120deg,#fff,var(--gold-soft));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-art .plaque em{font-style:italic;font-family:var(--serif);color:var(--gold-soft);font-size:1.4rem}
+.hero-art .plaque .ln{height:1px;width:120px;background:linear-gradient(90deg,transparent,var(--gold-soft),transparent);margin:14px auto}
+
+/* ---------- usp strip ---------- */
+.usp{position:relative;background:
+  radial-gradient(700px 200px at 50% 0%,rgba(199,154,58,.18),transparent 70%),
+  linear-gradient(120deg,var(--maroon-deep),var(--maroon) 70%);color:var(--cream)}
+.usp::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-soft),var(--gold),var(--gold-soft),transparent)}
+.usp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.usp-item{padding:28px 18px;text-align:center;border-right:1px solid rgba(230,207,148,.18);transition:.25s}
+.usp-item:last-child{border-right:none}
+.usp-item:hover{background:rgba(230,207,148,.06)}
+.usp-item .ic{color:var(--gold-soft);margin-bottom:8px;display:flex;justify-content:center;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+.usp-item strong{display:block;font-family:var(--serif);font-size:1.3rem}
+.usp-item span{font-size:.82rem;color:rgba(250,245,236,.78)}
+
+/* ---------- product grid & cards (boutique) ---------- */
+.section-head{text-align:center;margin-bottom:46px}
+.grid{display:grid;gap:28px}
+.grid-products{grid-template-columns:repeat(4,1fr)}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  transition:transform .3s cubic-bezier(.2,.8,.3,1),box-shadow .3s,border-color .3s;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(67,9,26,.04)}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(199,154,58,0);transition:box-shadow .3s}
+.card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--gold-soft)}
+.card:hover::after{box-shadow:inset 0 0 0 1px rgba(199,154,58,.45)}
+.card-media{position:relative;aspect-ratio:3/4;overflow:hidden;background:
+  linear-gradient(135deg,var(--cream-2),var(--blush))}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.3,1)}
+.card:hover .card-media img{transform:scale(1.07)}
+.card-media::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:linear-gradient(to top,rgba(67,9,26,.18),transparent 45%)}
+.card:hover .card-media::after{opacity:1}
+.card-badge{position:absolute;top:12px;left:12px;background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));color:#fff;font-size:.68rem;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:50px;box-shadow:0 4px 12px rgba(67,9,26,.28)}
+.card-badge.new{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#43290a}
+.card-badge.bridal{background:linear-gradient(135deg,var(--maroon-deep),#2d0712)}
+.card-fav{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  border:none;cursor:pointer;color:var(--maroon);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(67,9,26,.15);transition:.2s}
+.card-fav:hover{background:#fff;color:var(--rose-2);transform:scale(1.1)}
+.card-body{padding:17px 17px 19px;display:flex;flex-direction:column;gap:7px;flex:1}
+.card-cat{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+.card-title{font-family:var(--serif);font-size:1.26rem;font-weight:600;color:var(--ink);line-height:1.2}
+.card:hover .card-title{color:var(--maroon)}
+.card-rating{font-size:.8rem;color:var(--gold-deep)}
+.price-row{display:flex;align-items:baseline;gap:9px;margin-top:2px}
+.price{font-weight:600;font-size:1.14rem;color:var(--maroon)}
+.mrp{font-size:.9rem;color:var(--ink-soft);text-decoration:line-through}
+.off{font-size:.74rem;color:var(--ok);font-weight:700;background:rgba(31,122,77,.1);padding:2px 8px;border-radius:50px}
+.card-actions{margin-top:auto;display:flex;gap:8px;padding-top:12px}
+.card-actions .btn{flex:1}
+
+/* ---------- filters / shop ---------- */
+.shop-head{position:relative;overflow:hidden;background:
+  radial-gradient(700px 320px at 85% -20%,rgba(199,154,58,.18),transparent 70%),
+  linear-gradient(135deg,var(--cream),var(--blush) 60%,var(--rose));padding:54px 0;text-align:center}
+.shop-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-soft),transparent)}
+.toolbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:30px}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{padding:8px 18px;border-radius:50px;border:1.5px solid var(--line);background:#fff;cursor:pointer;font-size:.88rem;font-weight:500;transition:.22s}
+.chip:hover{border-color:var(--gold);color:var(--maroon);transform:translateY(-1px)}
+.chip.active{background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));color:#fff;border-color:var(--maroon);box-shadow:0 6px 16px rgba(109,19,39,.25)}
+.search-box,select.input{padding:11px 16px;border:1.5px solid var(--line);border-radius:50px;background:#fff;font-family:var(--sans);font-size:.9rem;min-width:200px;color:var(--ink);transition:.2s}
+.search-box:focus,.input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(199,154,58,.15)}
+
+/* ---------- product detail ---------- */
+.pd{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start}
+.pd-media{position:sticky;top:90px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);
+  border:1px solid var(--line)}
+.pd-media img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.3,1)}
+.pd-media:hover img{transform:scale(1.04)}
+.pd h1{margin-bottom:.1em;color:var(--maroon-deep)}
+.pd .pd-price{display:flex;align-items:baseline;gap:12px;margin:14px 0}
+.pd .pd-price .price{font-size:1.95rem}
+.pd-fabric{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.pd-fabric .tag{background:linear-gradient(135deg,var(--cream-2),var(--blush));border:1px solid rgba(199,154,58,.3);
+  padding:6px 15px;border-radius:50px;font-size:.82rem;color:var(--maroon-dark)}
+.size-row{display:flex;gap:10px;margin:16px 0;flex-wrap:wrap}
+.size-opt{min-width:46px;height:42px;border:1.5px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;font-weight:500;display:flex;align-items:center;justify-content:center;transition:.2s}
+.size-opt:hover{border-color:var(--gold)}
+.size-opt.active{border-color:var(--maroon);background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));color:#fff;box-shadow:0 5px 14px rgba(109,19,39,.25)}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:50px;overflow:hidden;background:#fff}
+.qty button{width:40px;height:42px;border:none;background:#fff;cursor:pointer;font-size:1.1rem;color:var(--maroon);transition:.18s}
+.qty button:hover{background:var(--rose)}
+.qty input{width:46px;text-align:center;border:none;font-size:1rem;font-family:var(--sans);color:var(--ink)}
+.pd-actions{display:flex;gap:12px;margin:22px 0;flex-wrap:wrap}
+.pd-meta{border-top:1px solid var(--line);margin-top:20px;padding-top:18px;display:grid;gap:8px;font-size:.9rem}
+.pd-meta .row{display:flex;gap:10px;color:var(--ink-soft)}
+
+/* ---------- forms ---------- */
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.85rem;font-weight:500;margin-bottom:6px;color:var(--ink)}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--radius-sm);
+  font-family:var(--sans);font-size:.95rem;background:#fff;color:var(--ink);transition:.2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(199,154,58,.18)}
+.field .err{color:var(--bad);font-size:.78rem;margin-top:4px;display:none}
+.field.invalid input,.field.invalid select{border-color:var(--bad)}
+.field.invalid .err{display:block}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* ---------- cart / checkout ---------- */
+.layout-split{display:grid;grid-template-columns:1.6fr 1fr;gap:34px;align-items:start}
+.cart-item{display:grid;grid-template-columns:90px 1fr auto;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.cart-item .ci-media{width:90px;aspect-ratio:3/4;border-radius:12px;overflow:hidden;box-shadow:0 3px 10px rgba(67,9,26,.1)}
+.cart-item .ci-media img{width:100%;height:100%;object-fit:cover}
+.cart-item .ci-name{font-family:var(--serif);font-size:1.18rem;color:var(--ink)}
+.cart-item .ci-sub{font-size:.82rem;color:var(--ink-soft)}
+.cart-item .ci-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.link-danger{color:var(--bad);font-size:.82rem;cursor:pointer;background:none;border:none}
+.link-danger:hover{text-decoration:underline}
+.summary{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);position:sticky;top:90px;
+  background-image:linear-gradient(#fff,#fff),linear-gradient(135deg,var(--gold-soft),var(--rose-2));
+  background-origin:border-box;background-clip:padding-box,border-box;border:1.5px solid transparent}
+.summary h3{font-size:1.45rem;color:var(--maroon-deep)}
+.sum-row{display:flex;justify-content:space-between;padding:9px 0;font-size:.95rem}
+.sum-row.total{border-top:1px solid var(--line);margin-top:8px;padding-top:14px;font-size:1.25rem;font-weight:600;color:var(--maroon);font-family:var(--serif)}
+.pay-opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:14px;cursor:pointer;margin-bottom:12px;transition:.2s}
+.pay-opt:hover{border-color:var(--gold-soft)}
+.pay-opt.active{border-color:var(--maroon);background:var(--rose);box-shadow:0 4px 14px rgba(109,19,39,.12)}
+.pay-opt input{margin-top:3px}
+.pay-opt .po-title{font-weight:600}
+.pay-opt .po-sub{font-size:.82rem;color:var(--ink-soft)}
+.empty-state{text-align:center;padding:70px 20px}
+.empty-state .ic{font-size:3rem;color:var(--gold);filter:drop-shadow(0 3px 6px rgba(169,119,42,.25))}
+
+/* ---------- badges / status (gold-outlined, soft tints) ---------- */
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 13px;border-radius:50px;font-size:.76rem;font-weight:600;text-transform:capitalize;
+  border:1px solid transparent}
+.badge.pending{background:#fdf0dd;color:var(--warn);border-color:rgba(180,101,26,.3)}
+.badge.confirmed{background:#e6f0ff;color:#1f5fa6;border-color:rgba(31,95,166,.25)}
+.badge.shipped{background:#efe6ff;color:#6a3fb0;border-color:rgba(106,63,176,.25)}
+.badge.delivered{background:#e3f6ea;color:var(--ok);border-color:rgba(31,122,77,.28)}
+.badge.cancelled{background:#fde3e1;color:var(--bad);border-color:rgba(166,39,31,.28)}
+.badge.paid{background:#e3f6ea;color:var(--ok);border-color:rgba(31,122,77,.28)}
+.badge.cod{background:linear-gradient(135deg,var(--cream-2),var(--champagne));color:var(--maroon-dark);border-color:rgba(199,154,58,.4)}
+
+/* ---------- admin ---------- */
+.admin-shell{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.admin-side{background:
+  radial-gradient(400px 260px at 50% -10%,rgba(199,154,58,.14),transparent 70%),
+  linear-gradient(180deg,var(--maroon-deep),var(--maroon));color:var(--cream);padding:22px 16px;position:sticky;top:0;height:100vh;
+  border-right:1px solid rgba(230,207,148,.14)}
+.admin-side .brand-text strong{color:#fff}.admin-side .brand-text em{color:var(--gold-soft)}
+.admin-nav{display:flex;flex-direction:column;gap:4px;margin-top:26px}
+.admin-nav button{display:flex;align-items:center;gap:11px;background:none;border:none;color:var(--cream);text-align:left;
+  padding:12px 14px;border-radius:12px;cursor:pointer;font-family:var(--sans);font-size:.94rem;transition:.18s}
+.admin-nav button:hover{background:rgba(230,207,148,.12)}
+.admin-nav button.active{background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:#43290a;font-weight:600;box-shadow:0 6px 16px rgba(169,119,42,.3)}
+.admin-main{padding:30px 34px;background:var(--paper)}
+.admin-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:28px}
+.stat{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);overflow:hidden;transition:.25s}
+.stat::before{content:"";position:absolute;top:0;left:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep))}
+.stat:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.stat .lbl{font-size:.8rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1px}
+.stat .val{font-family:var(--serif);font-size:2.1rem;color:var(--maroon);margin-top:4px}
+.stat .sub{font-size:.8rem;color:var(--ok)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:24px}
+.panel-head{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(135deg,var(--cream),var(--blush))}
+.panel-head h3{margin:0;font-size:1.3rem;color:var(--maroon-deep)}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:13px 22px;font-size:.9rem;border-bottom:1px solid var(--line)}
+th{font-size:.74rem;text-transform:uppercase;letter-spacing:1px;color:var(--ink-soft);font-weight:600;background:var(--cream)}
+tbody tr{transition:.15s}
+tbody tr:hover{background:var(--blush)}
+.table-thumb{width:44px;height:56px;border-radius:8px;object-fit:cover;box-shadow:0 2px 6px rgba(67,9,26,.12)}
+.admin-login{min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(600px 400px at 70% 20%,rgba(230,207,148,.22),transparent 65%),var(--grad-wine)}
+.admin-login .box{background:#fff;border-radius:var(--radius);padding:40px;width:min(400px,92vw);box-shadow:var(--shadow-lg);
+  border-top:3px solid var(--gold)}
+
+/* ---------- modal ---------- */
+.modal-backdrop{position:fixed;inset:0;background:rgba(43,9,26,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal-backdrop.open{display:flex;animation:vik-fade .25s ease both}
+.modal{background:#fff;border-radius:var(--radius);width:min(560px,96vw);max-height:92vh;overflow:auto;box-shadow:var(--shadow-lg);
+  border-top:3px solid var(--gold);animation:vik-pop .3s cubic-bezier(.2,.8,.3,1) both}
+.modal-head{padding:20px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(135deg,var(--cream),var(--blush))}
+.modal-head h3{margin:0;color:var(--maroon-deep)}
+.modal-body{padding:22px 24px}
+.modal-foot{padding:16px 24px;border-top:1px solid var(--line);display:flex;gap:12px;justify-content:flex-end}
+.x-close{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--ink-soft);line-height:1;transition:.18s}
+.x-close:hover{color:var(--maroon)}
+
+/* ---------- toast ---------- */
+#vik-toast-host{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:10px;align-items:center}
+.vik-toast{background:var(--ink);color:#fff;padding:13px 22px;border-radius:50px;font-size:.9rem;box-shadow:var(--shadow-lg);
+  opacity:0;transform:translateY(14px);transition:.3s;max-width:90vw}
+.vik-toast.show{opacity:1;transform:translateY(0)}
+.vik-toast.ok{background:var(--maroon)}.vik-toast.gold{background:var(--gold-deep)}.vik-toast.err{background:var(--bad)}
+
+/* ---------- misc ---------- */
+.banner{background:linear-gradient(90deg,var(--maroon-deep),var(--maroon) 50%,var(--maroon-deep));color:var(--cream);text-align:center;font-size:.85rem;padding:9px 16px;letter-spacing:.5px}
+.banner a{color:var(--gold-soft);font-weight:600}
+.banner a:hover{color:#fff;text-decoration:underline}
+.footer{position:relative;background:
+  radial-gradient(700px 300px at 85% 0%,rgba(199,154,58,.12),transparent 70%),
+  var(--maroon-deep);color:var(--cream);padding:56px 0 24px}
+.footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-soft),var(--gold),var(--gold-soft),transparent)}
+.footer-grid{max-width:1200px;margin:0 auto;padding:0 22px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:30px}
+.footer h4{font-family:var(--sans);font-size:.82rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-soft);margin-bottom:14px}
+.footer a,.footer span{display:block;color:rgba(250,245,236,.82);font-size:.9rem;margin-bottom:9px;transition:.2s}
+.footer a:hover{color:var(--gold-soft);transform:translateX(3px)}
+.footer-brand strong{font-family:var(--serif);font-size:1.55rem;letter-spacing:3px;color:#fff;display:block}
+.footer-brand em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
+.footer-bottom{max-width:1200px;margin:30px auto 0;padding:18px 22px 0;border-top:1px solid rgba(230,207,148,.18);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem;color:rgba(250,245,236,.6)}
+.fab-wa{position:fixed;bottom:22px;right:22px;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(37,211,102,.4);z-index:60;transition:transform .25s}
+.fab-wa:hover{transform:scale(1.1) rotate(4deg)}
+.tracker{display:flex;justify-content:space-between;position:relative;margin:30px 0}
+.tracker::before{content:"";position:absolute;top:16px;left:5%;right:5%;height:2px;background:var(--line)}
+.tracker .step{position:relative;text-align:center;flex:1;font-size:.8rem;color:var(--ink-soft)}
+.tracker .step .dot{width:34px;height:34px;border-radius:50%;background:#fff;border:2px solid var(--line);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;transition:.25s}
+.tracker .step.done .dot{background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));border-color:var(--maroon);color:#fff;box-shadow:0 5px 14px rgba(109,19,39,.3)}
+.tracker .step.done{color:var(--maroon);font-weight:600}
+
+/* ---------- elegant entrance animations (reduced-motion respected) ---------- */
+@keyframes vik-fade{from{opacity:0}to{opacity:1}}
+@keyframes vik-pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes vik-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.section,.hero-inner,.card,.stat,.panel{animation:vik-up .6s cubic-bezier(.2,.8,.3,1) both}
+.hero-inner{animation-duration:.8s}
+.grid-products .card:nth-child(2){animation-delay:.06s}
+.grid-products .card:nth-child(3){animation-delay:.12s}
+.grid-products .card:nth-child(4){animation-delay:.18s}
+.grid-products .card:nth-child(5){animation-delay:.1s}
+.grid-products .card:nth-child(6){animation-delay:.16s}
+.grid-products .card:nth-child(7){animation-delay:.22s}
+.grid-products .card:nth-child(8){animation-delay:.28s}
+.stat:nth-child(2){animation-delay:.07s}.stat:nth-child(3){animation-delay:.14s}.stat:nth-child(4){animation-delay:.21s}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- responsive ---------- */
+@media(max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:28px}
+  .hero-art{max-width:420px}
+  .pd{grid-template-columns:1fr;gap:28px}.pd-media{position:static}
+  .layout-split{grid-template-columns:1fr}.summary{position:static}
+  .grid-products{grid-template-columns:repeat(3,1fr)}
+  .admin-shell{grid-template-columns:1fr}.admin-side{position:static;height:auto}
+  .admin-nav{flex-direction:row;overflow-x:auto;margin-top:16px}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+  .nav-links{position:absolute;top:66px;left:0;right:0;background:var(--paper);flex-direction:column;gap:0;padding:0 22px;
+    max-height:0;overflow:hidden;border-bottom:1px solid var(--line);transition:.3s}
+  .nav-links.open{max-height:360px;padding:12px 22px}
+  .hamburger{display:flex}
+  .usp-grid{grid-template-columns:repeat(2,1fr)}.usp-item:nth-child(2){border-right:none}
+  .grid-products{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .grid-2{grid-template-columns:1fr}
+  .section{padding:52px 0}
+}
+@media(max-width:460px){
+  .grid-products{grid-template-columns:1fr 1fr;gap:14px}
+  .footer-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr}
+  .hero-contact a{width:100%}
+}
+
+/* ============================================================
+   Added: hero real-photo lookbook + category photo tiles
+   ============================================================ */
+.hero-art{padding:0;background:var(--grad-wine)}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-art::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(67,9,26,.74) 0%,rgba(67,9,26,.14) 46%,transparent 72%)}
+.hero-photo-peek{position:absolute;z-index:2;width:38%;aspect-ratio:3/4;object-fit:cover;right:-12px;bottom:34px;
+  border-radius:14px;border:4px solid #fff;box-shadow:var(--shadow-lg);transform:rotate(3deg)}
+.hero-pill{position:absolute;z-index:3;top:16px;left:16px;background:rgba(253,250,243,.93);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:var(--maroon);font-size:.72rem;font-weight:600;
+  letter-spacing:.4px;padding:8px 14px;border-radius:50px;border:1px solid var(--gold-soft);box-shadow:0 6px 16px rgba(67,9,26,.2)}
+.hero-cap{position:absolute;z-index:3;left:0;right:0;bottom:0;padding:22px 24px;color:#fff}
+.hero-cap strong{font-family:var(--serif);font-size:2rem;letter-spacing:4px;display:block;line-height:1}
+.hero-cap em{font-family:var(--serif);font-style:italic;color:var(--gold-soft);font-size:1.12rem}
+.hero-cap-line{display:block;height:1px;width:84px;background:var(--gold-soft);margin:9px 0}
+.hero-cap small{letter-spacing:3px;text-transform:uppercase;font-size:.66rem;color:rgba(255,255,255,.85)}
+
+.cat-tile{position:relative;display:block;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid var(--line);transition:transform .28s,box-shadow .28s}
+.cat-tile:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.cat-tile img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.cat-tile:hover img{transform:scale(1.07)}
+.cat-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(67,9,26,.8),rgba(67,9,26,.06) 55%,transparent)}
+.cat-tile-cap{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:16px;color:#fff;text-align:center}
+.cat-tile-cap strong{font-family:var(--serif);font-size:1.3rem;display:block}
+.cat-tile-cap span{font-size:.76rem;color:rgba(255,255,255,.86)}
+@media(max-width:900px){#category-grid{grid-template-columns:repeat(3,1fr)!important}}
+@media(max-width:560px){#category-grid{grid-template-columns:repeat(2,1fr)!important}.hero-cap strong{font-size:1.5rem}}
+</style>
+</head><body>
+<div class="banner" data-banner>✨ Free shipping on orders above ₹2999 · <a href="https://wa.me/919755816439" target="_blank">Order on WhatsApp 9755816439</a></div>
+<header data-navbar></header>
+<main id="app"></main>
+<footer class="footer" data-footer></footer>
+<a class="fab-wa" data-fab href="https://wa.me/919755816439" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2z"/></svg></a>
+<script>
+/* ============================================================
+   VIKALPAYATI by Vishakha — seed data & brand config
+   This file only SEEDS defaults. Live data lives in localStorage
+   and is managed by store.js. Editing a product in Admin persists
+   to localStorage, not here.
+   ============================================================ */
+
+const VIKALPAYATI = {
+  brand: {
+    name: "VIKALPAYATI",
+    by: "by Vishakha",
+    tagline: "Custom · Crafted · Timeless",
+    going: "is going Online, at your door",
+    whatsapp: "9755816439",
+    phone: "+91 92037 59419",
+    phoneDial: "+919203759419",
+    email: "hello@vikalpayati.in",
+    instagram: "vikalpayati",
+    address: "Bhopal, Madhya Pradesh, India",
+    currency: "₹",
+    freeShipAbove: 2999,
+    shipFlat: 99,
+    codFee: 49,
+    usps: [
+      { icon: "dress",  title: "Designer Wear",            sub: "Curated couture" },
+      { icon: "fit",    title: "Custom Fit",               sub: "Stitched to you" },
+      { icon: "heart",  title: "Personalised Service",     sub: "One-on-one care" },
+      { icon: "lotus",  title: "Tradition + Modern Touch", sub: "Rooted, reimagined" }
+    ]
+  },
+
+  categories: [
+    { id: "sarees",   name: "Sarees" },
+    { id: "lehengas", name: "Lehengas" },
+    { id: "suits",    name: "Suits & Kurtis" },
+    { id: "dupattas", name: "Dupattas & Stoles" },
+    { id: "bridal",   name: "Bridal Couture" }
+  ],
+
+  /* Images are elegant CSS-gradient placeholders (no photos yet).
+     `swatch` = [colorA, colorB] drives the gradient tile.
+     Replace `image` with a real URL/path anytime and it will be used. */
+  products: [
+    { id: "sar-banarasi-red",   name: "Banarasi Silk Saree — Maroon & Gold", category: "sarees",   price: 4999, mrp: 7499, swatch: ["#7a1f2b","#c79a3a"], image: "https://images.pexels.com/photos/17113983/pexels-photo-17113983.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Pure Banarasi Silk", color: "Maroon", badge: "Bestseller", stock: 8,  rating: 4.8, desc: "Handwoven Banarasi silk with intricate gold zari motifs. A timeless drape for weddings and festive occasions." },
+    { id: "sar-kanjivaram-grn", name: "Kanjivaram Saree — Emerald",          category: "sarees",   price: 6299, mrp: 8999, swatch: ["#0f5132","#c79a3a"], image: "https://images.pexels.com/photos/35586011/pexels-photo-35586011.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Kanjivaram Silk",    color: "Emerald", badge: "New", stock: 5,  rating: 4.9, desc: "South-Indian Kanjivaram weave with a contrast gold border. Rich, regal and heirloom-worthy." },
+    { id: "sar-chiffon-blush",  name: "Chiffon Saree — Blush Pink",          category: "sarees",   price: 2499, mrp: 3499, swatch: ["#d98a9e","#f3e4d7"], image: "https://images.pexels.com/photos/33067044/pexels-photo-33067044.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Chiffon",           color: "Blush", badge: "", stock: 12, rating: 4.6, desc: "Featherlight chiffon with a delicate sequin pallu. Effortless elegance for cocktail evenings." },
+    { id: "leh-bridal-red",     name: "Bridal Lehenga — Crimson Zardozi",    category: "lehengas", price: 18999, mrp: 26999, swatch: ["#8b0000","#c79a3a"], image: "https://images.pexels.com/photos/25811178/pexels-photo-25811178.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Raw Silk + Zardozi", color: "Crimson", badge: "Bridal", stock: 3, rating: 5.0, desc: "A show-stopping crimson lehenga with hand-done zardozi and a heavily flared ghera. Made for the main day." },
+    { id: "leh-pastel-mint",    name: "Lehenga — Pastel Mint Threadwork",    category: "lehengas", price: 9499, mrp: 13999, swatch: ["#9fd8c3","#f3e4d7"], image: "https://images.pexels.com/photos/40195823/pexels-photo-40195823.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Georgette",         color: "Mint", badge: "", stock: 6, rating: 4.7, desc: "Soft mint georgette with pastel resham threadwork. Perfect for mehndi and daytime functions." },
+    { id: "suit-anarkali-wine", name: "Anarkali Suit — Wine Floor Length",   category: "suits",    price: 5499, mrp: 7999, swatch: ["#5e2129","#c79a3a"], image: "https://images.pexels.com/photos/30268122/pexels-photo-30268122.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Velvet",            color: "Wine", badge: "Bestseller", stock: 7, rating: 4.8, desc: "Floor-length wine velvet Anarkali with a gold-embellished yoke and matching dupatta." },
+    { id: "suit-cotton-indigo", name: "Cotton Kurti Set — Indigo Block",     category: "suits",    price: 1899, mrp: 2699, swatch: ["#2b3a67","#eadfce"], image: "https://images.pexels.com/photos/20690516/pexels-photo-20690516.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Handblock Cotton",  color: "Indigo", badge: "", stock: 20, rating: 4.5, desc: "Breathable handblock-printed cotton kurti with pants. Everyday grace, hand-crafted in India." },
+    { id: "suit-chanderi-gold", name: "Chanderi Suit — Ivory & Gold",        category: "suits",    price: 3299, mrp: 4599, swatch: ["#efe6d0","#c79a3a"], image: "https://images.pexels.com/photos/37054351/pexels-photo-37054351.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Chanderi Silk",     color: "Ivory", badge: "New", stock: 9, rating: 4.7, desc: "Luminous ivory Chanderi with fine gold buttis. Understated festive luxury." },
+    { id: "dup-phulkari",       name: "Phulkari Dupatta — Rani Pink",        category: "dupattas", price: 1299, mrp: 1899, swatch: ["#b3295f","#c79a3a"], image: "https://images.pexels.com/photos/13584935/pexels-photo-13584935.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Georgette",         color: "Rani Pink", badge: "", stock: 15, rating: 4.6, desc: "Vibrant Phulkari embroidery on a flowy georgette base. The statement piece your wardrobe needs." },
+    { id: "dup-organza-ivory",  name: "Organza Stole — Ivory Gota",          category: "dupattas", price: 999,  mrp: 1499, swatch: ["#f3e4d7","#c79a3a"], image: "https://images.pexels.com/photos/36266671/pexels-photo-36266671.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Organza",           color: "Ivory", badge: "", stock: 18, rating: 4.4, desc: "Sheer organza stole edged with delicate gota lace. Drapes beautifully over any outfit." },
+    { id: "bri-sharara-gold",   name: "Bridal Sharara — Antique Gold",       category: "bridal",   price: 15999, mrp: 22999, swatch: ["#b8860b","#7a1f2b"], image: "https://images.pexels.com/photos/29128064/pexels-photo-29128064.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Silk + Gota Patti", color: "Antique Gold", badge: "Bridal", stock: 2, rating: 5.0, desc: "Regal antique-gold sharara with intricate gota-patti. For the bride who loves tradition with flair." },
+    { id: "bri-velvet-maroon",  name: "Bridal Gown — Maroon Velvet",         category: "bridal",   price: 13499, mrp: 18999, swatch: ["#4a0e1a","#c79a3a"], image: "https://images.pexels.com/photos/31832873/pexels-photo-31832873.jpeg?auto=compress&cs=tinysrgb&w=600&h=760&fit=crop", fabric: "Velvet + Stonework", color: "Maroon", badge: "New", stock: 4, rating: 4.9, desc: "Deep maroon velvet gown with hand-set stonework and a sweeping train. Modern bridal drama." }
+  ]
+};
+
+if (typeof window !== "undefined") window.VIKALPAYATI = VIKALPAYATI;
+</script>
+<script>
+/* ============================================================
+   VIKALPAYATI — Store (data layer + shared UI)
+   localStorage-backed. Zero server. Used by every page.
+   Public API (window.Store):
+     Products: getProducts(filter?), getProduct(id), saveProduct(p), deleteProduct(id)
+     Cart:     getCart(), addToCart(id,qty,size), setQty(id,qty), removeFromCart(id),
+               clearCart(), cartCount(), cartSubtotal(), cartItemsDetailed()
+     Orders:   placeOrder(payload) -> order, getOrders(), getOrder(id),
+               updateOrderStatus(id,status), orderStats()
+     Auth:     adminLogin(u,p), isAdmin(), adminLogout(), getAdmin(), setAdmin(u,p)
+     Money:    formatINR(n), shippingFor(subtotal)
+     UI:       toast(msg,type?), productImg(p), swatchCSS(p), updateCartBadge(),
+               renderNavbar(active), renderFooter(), money(n)
+   ============================================================ */
+(function () {
+  const K = {
+    products: "vik_products",
+    cart: "vik_cart",
+    orders: "vik_orders",
+    admin: "vik_admin",
+    seeded: "vik_seeded_v1"
+  };
+  const read = (k, fb) => { try { return JSON.parse(localStorage.getItem(k)) ?? fb; } catch { return fb; } };
+  const write = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+
+  /* ---------- seeding ---------- */
+  function init() {
+    if (!localStorage.getItem(K.seeded)) {
+      write(K.products, (window.VIKALPAYATI?.products || []).map(p => ({ ...p })));
+      if (!localStorage.getItem(K.cart)) write(K.cart, []);
+      if (!localStorage.getItem(K.orders)) write(K.orders, []);
+      if (!localStorage.getItem(K.admin)) write(K.admin, { user: "admin", pass: "vikalpayati123" });
+      localStorage.setItem(K.seeded, "1");
+    }
+  }
+
+  /* ---------- products ---------- */
+  const getProducts = (filter) => {
+    let list = read(K.products, []);
+    if (filter?.category) list = list.filter(p => p.category === filter.category);
+    if (filter?.q) {
+      const q = filter.q.toLowerCase();
+      list = list.filter(p => (p.name + " " + p.fabric + " " + p.color).toLowerCase().includes(q));
+    }
+    return list;
+  };
+  const getProduct = (id) => read(K.products, []).find(p => p.id === id) || null;
+  const saveProduct = (p) => {
+    const list = read(K.products, []);
+    const i = list.findIndex(x => x.id === p.id);
+    if (i >= 0) list[i] = { ...list[i], ...p };
+    else list.push({ rating: 4.5, stock: 10, mrp: p.price, badge: "", swatch: ["#7a1f2b", "#c79a3a"], ...p });
+    write(K.products, list);
+    return p;
+  };
+  const deleteProduct = (id) => write(K.products, read(K.products, []).filter(p => p.id !== id));
+
+  /* ---------- cart ---------- */
+  const getCart = () => read(K.cart, []);
+  const addToCart = (id, qty = 1, size = "Free Size") => {
+    const cart = getCart();
+    const row = cart.find(c => c.id === id && c.size === size);
+    if (row) row.qty += qty; else cart.push({ id, qty, size });
+    write(K.cart, cart);
+    updateCartBadge();
+    return cart;
+  };
+  const setQty = (id, qty, size) => {
+    let cart = getCart();
+    cart = cart.map(c => (c.id === id && (size === undefined || c.size === size)) ? { ...c, qty } : c)
+               .filter(c => c.qty > 0);
+    write(K.cart, cart); updateCartBadge(); return cart;
+  };
+  const removeFromCart = (id, size) => {
+    write(K.cart, getCart().filter(c => !(c.id === id && (size === undefined || c.size === size))));
+    updateCartBadge();
+  };
+  const clearCart = () => { write(K.cart, []); updateCartBadge(); };
+  const cartCount = () => getCart().reduce((n, c) => n + c.qty, 0);
+  const cartItemsDetailed = () => getCart().map(c => {
+    const p = getProduct(c.id);
+    return p ? { ...c, name: p.name, price: p.price, mrp: p.mrp, swatch: p.swatch, fabric: p.fabric, lineTotal: p.price * c.qty } : null;
+  }).filter(Boolean);
+  const cartSubtotal = () => cartItemsDetailed().reduce((s, i) => s + i.lineTotal, 0);
+
+  /* ---------- money ---------- */
+  const B = () => window.VIKALPAYATI?.brand || {};
+  const formatINR = (n) => (B().currency || "₹") + Number(n || 0).toLocaleString("en-IN");
+  const money = formatINR;
+  const shippingFor = (subtotal) => (subtotal >= (B().freeShipAbove || 2999) || subtotal === 0) ? 0 : (B().shipFlat || 99);
+
+  /* ---------- orders ---------- */
+  function placeOrder(payload) {
+    const orders = read(K.orders, []);
+    const seq = orders.length + 1;
+    const id = "VP" + String(Date.now()).slice(-6) + String(seq).padStart(2, "0");
+    const order = {
+      id,
+      createdAt: new Date().toISOString(),
+      items: payload.items,
+      subtotal: payload.subtotal,
+      shipping: payload.shipping,
+      codFee: payload.codFee || 0,
+      discount: payload.discount || 0,
+      total: payload.total,
+      customer: payload.customer,
+      payment: payload.payment,          // {method:'cod'|'online', status:'pending'|'paid', ref?}
+      status: payload.payment.method === "online" && payload.payment.status === "paid" ? "confirmed" : "pending"
+    };
+    orders.unshift(order);
+    write(K.orders, orders);
+    return order;
+  }
+  const getOrders = () => read(K.orders, []);
+  const getOrder = (id) => read(K.orders, []).find(o => o.id === id) || null;
+  const updateOrderStatus = (id, status) => {
+    const orders = read(K.orders, []);
+    const o = orders.find(x => x.id === id);
+    if (o) { o.status = status; if (status === "delivered" && o.payment.method === "cod") o.payment.status = "paid"; write(K.orders, orders); }
+    return o;
+  };
+  function orderStats() {
+    const o = getOrders();
+    const revenue = o.filter(x => x.status !== "cancelled").reduce((s, x) => s + x.total, 0);
+    const byStatus = {};
+    o.forEach(x => { byStatus[x.status] = (byStatus[x.status] || 0) + 1; });
+    return { count: o.length, revenue, byStatus, pending: byStatus.pending || 0 };
+  }
+
+  /* ---------- admin auth ---------- */
+  const getAdmin = () => read(K.admin, { user: "admin", pass: "vikalpayati123" });
+  const setAdmin = (user, pass) => write(K.admin, { user, pass });
+  const adminLogin = (u, p) => {
+    const a = getAdmin();
+    if (u === a.user && p === a.pass) { sessionStorage.setItem("vik_admin_session", "1"); return true; }
+    return false;
+  };
+  const isAdmin = () => sessionStorage.getItem("vik_admin_session") === "1";
+  const adminLogout = () => sessionStorage.removeItem("vik_admin_session");
+
+  /* ---------- images (inline SVG gradient placeholders) ---------- */
+  function productGradient(ref) {
+    const p = (ref && typeof ref === "object") ? ref : (typeof ref === "string" ? getProduct(ref) : null);
+    const [a, b] = (p && p.swatch) || ["#7a1f2b", "#c79a3a"];
+    const label = ((p && p.fabric) || "VIKALPAYATI").replace(/&/g, "and");
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='600' height='760' viewBox='0 0 600 760'>
+      <defs>
+        <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+          <stop offset='0' stop-color='${a}'/><stop offset='1' stop-color='${b}'/>
+        </linearGradient>
+        <pattern id='p' width='60' height='60' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'>
+          <path d='M30 8 C38 20 52 24 52 36 C52 48 40 52 30 60 C20 52 8 48 8 36 C8 24 22 20 30 8 Z' fill='none' stroke='rgba(255,255,255,.18)' stroke-width='1.3'/>
+        </pattern>
+      </defs>
+      <rect width='600' height='760' fill='url(#g)'/>
+      <rect width='600' height='760' fill='url(#p)'/>
+      <circle cx='300' cy='300' r='120' fill='none' stroke='rgba(255,255,255,.35)' stroke-width='2'/>
+      <text x='300' y='312' font-family='Georgia,serif' font-size='54' fill='rgba(255,255,255,.92)' text-anchor='middle'>V</text>
+      <text x='300' y='700' font-family='Georgia,serif' font-size='26' letter-spacing='3' fill='rgba(255,255,255,.85)' text-anchor='middle'>${label.toUpperCase()}</text>
+    </svg>`;
+    return "data:image/svg+xml," + encodeURIComponent(svg);
+  }
+  // Use the real photo when a product has `image`, else the gradient tile.
+  function productImg(p) { return (p && p.image) ? p.image : productGradient(p); }
+  // Global safety net: if any remote product photo fails to load, swap in its gradient (matched by alt=name).
+  if (typeof document !== "undefined") {
+    document.addEventListener("error", function (e) {
+      const el = e.target;
+      if (el && el.tagName === "IMG" && !el.__fbk) {
+        const s = el.currentSrc || el.getAttribute("src") || "";
+        if (/^https?:/i.test(s)) { el.__fbk = true; el.src = productGradient(read(K.products, []).find(x => x.name === el.alt) || null); }
+      }
+    }, true);
+  }
+  const swatchCSS = (p) => { const [a, b] = p.swatch || ["#7a1f2b", "#c79a3a"]; return `linear-gradient(135deg,${a},${b})`; };
+
+  /* ---------- toast ---------- */
+  function toast(msg, type = "ok") {
+    let host = document.getElementById("vik-toast-host");
+    if (!host) { host = document.createElement("div"); host.id = "vik-toast-host"; document.body.appendChild(host); }
+    const el = document.createElement("div");
+    el.className = "vik-toast " + type;
+    el.textContent = msg;
+    host.appendChild(el);
+    requestAnimationFrame(() => el.classList.add("show"));
+    setTimeout(() => { el.classList.remove("show"); setTimeout(() => el.remove(), 300); }, 2600);
+  }
+
+  /* ---------- shared chrome ---------- */
+  function updateCartBadge() {
+    document.querySelectorAll("[data-cart-badge]").forEach(b => {
+      const n = cartCount();
+      b.textContent = n;
+      b.style.display = n > 0 ? "flex" : "none";
+    });
+  }
+  function renderNavbar(active) {
+    const host = document.querySelector("[data-navbar]");
+    if (!host) return;
+    const b = B();
+    const link = (href, key, label) => `<a href="${href}" class="${active === key ? "active" : ""}">${label}</a>`;
+    host.innerHTML = `
+      <div class="nav-inner">
+        <a class="brand" href="#/">
+          <span class="brand-mark">❖</span>
+          <span class="brand-text"><strong>${b.name || "VIKALPAYATI"}</strong><em>${b.by || ""}</em></span>
+        </a>
+        <nav class="nav-links">
+          ${link("#/", "home", "Home")}
+          ${link("#shop", "shop", "Shop")}
+          ${link("#shop?category=sarees", "sarees", "Sarees")}
+          ${link("#shop?category=bridal", "bridal", "Bridal")}
+          ${link("#track", "track", "Track Order")}
+          ${link("#about", "about", "About")}
+        </nav>
+        <div class="nav-actions">
+          <a class="icon-btn" href="https://wa.me/91${b.whatsapp}" target="_blank" title="WhatsApp us" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.2 7.2 0 01-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 00-.7.3A2.8 2.8 0 006 8.9a4.8 4.8 0 001 2.5 11 11 0 004.3 3.8c2 .8 2 .5 2.4.5a2.5 2.5 0 001.6-1.1 2 2 0 00.1-1.1c0-.1-.2-.2-.5-.3z"/></svg>
+          </a>
+          <a class="icon-btn" href="#cart" title="Cart" aria-label="Cart" style="position:relative">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M6 6L5 3H2"/></svg>
+            <span class="cart-badge" data-cart-badge style="display:none">0</span>
+          </a>
+          <a class="icon-btn admin-link" href="#admin" title="Admin" aria-label="Admin">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M4.5 20a7.5 7.5 0 0115 0"/></svg>
+          </a>
+          <button class="hamburger" aria-label="Menu" onclick="document.querySelector('[data-navbar] .nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>`;
+    updateCartBadge();
+  }
+  function renderFooter() {
+    const host = document.querySelector("[data-footer]");
+    if (!host) return;
+    const b = B();
+    host.innerHTML = `
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><strong>${b.name}</strong><em>${b.by}</em></div>
+          <p class="muted">${b.tagline}</p>
+          <p class="muted">${b.going}</p>
+        </div>
+        <div>
+          <h4>Shop</h4>
+          <a href="#shop?category=sarees">Sarees</a>
+          <a href="#shop?category=lehengas">Lehengas</a>
+          <a href="#shop?category=suits">Suits & Kurtis</a>
+          <a href="#shop?category=bridal">Bridal Couture</a>
+        </div>
+        <div>
+          <h4>Help</h4>
+          <a href="#track">Track Order</a>
+          <a href="#about">About Us</a>
+          <a href="#about">Shipping & Returns</a>
+          <a href="#admin">Admin Login</a>
+        </div>
+        <div>
+          <h4>Stay Connected ❤</h4>
+          <a href="https://wa.me/91${b.whatsapp}" target="_blank">WhatsApp: ${b.whatsapp}</a>
+          <a href="tel:${b.phoneDial}">Call: ${b.phone}</a>
+          <a href="mailto:${b.email}">${b.email}</a>
+          <span class="muted">${b.address}</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© ${new Date().getFullYear()} ${b.name} ${b.by}. All rights reserved.</span>
+        <span class="muted">Custom · Crafted · Timeless</span>
+      </div>`;
+  }
+
+  window.Store = {
+    init, getProducts, getProduct, saveProduct, deleteProduct,
+    getCart, addToCart, setQty, removeFromCart, clearCart, cartCount, cartItemsDetailed, cartSubtotal,
+    placeOrder, getOrders, getOrder, updateOrderStatus, orderStats,
+    adminLogin, isAdmin, adminLogout, getAdmin, setAdmin,
+    formatINR, money, shippingFor,
+    toast, productImg, productGradient, swatchCSS, updateCartBadge, renderNavbar, renderFooter
+  };
+  init();
+})();
+</script>
+<script>
+/* ============================================================
+   VIKALPAYATI — Single-File SPA Controller (hash-routed)
+   Reproduces the whole multi-page site inside one file.
+   Overrides Store.renderNavbar / Store.renderFooter so their
+   links use hash routes instead of .html files.
+   ============================================================ */
+(function () {
+  const app = () => document.getElementById("app");
+  const B = () => (window.VIKALPAYATI && window.VIKALPAYATI.brand) || {};
+  const CATS = () => (window.VIKALPAYATI && window.VIKALPAYATI.categories) || [];
+
+  /* ------------------------------------------------------------
+     1) OVERRIDE shared chrome so hrefs point at hash routes.
+        Markup/classes/icons identical to store.js — only hrefs
+        are rewritten (index.html→#/, shop.html→#shop, etc.).
+     ------------------------------------------------------------ */
+  Store.renderNavbar = function (active) {
+    const host = document.querySelector("[data-navbar]");
+    if (!host) return;
+    const b = B();
+    const link = (href, key, label) => `<a href="${href}" class="${active === key ? "active" : ""}">${label}</a>`;
+    host.innerHTML = `
+      <div class="nav-inner">
+        <a class="brand" href="#/">
+          <span class="brand-mark">❖</span>
+          <span class="brand-text"><strong>${b.name || "VIKALPAYATI"}</strong><em>${b.by || ""}</em></span>
+        </a>
+        <nav class="nav-links">
+          ${link("#/", "home", "Home")}
+          ${link("#shop", "shop", "Shop")}
+          ${link("#shop?category=sarees", "sarees", "Sarees")}
+          ${link("#shop?category=bridal", "bridal", "Bridal")}
+          ${link("#track", "track", "Track Order")}
+          ${link("#about", "about", "About")}
+        </nav>
+        <div class="nav-actions">
+          <a class="icon-btn" href="https://wa.me/91${b.whatsapp}" target="_blank" title="WhatsApp us" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.2 7.2 0 01-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 00-.7.3A2.8 2.8 0 006 8.9a4.8 4.8 0 001 2.5 11 11 0 004.3 3.8c2 .8 2 .5 2.4.5a2.5 2.5 0 001.6-1.1 2 2 0 00.1-1.1c0-.1-.2-.2-.5-.3z"/></svg>
+          </a>
+          <a class="icon-btn" href="#cart" title="Cart" aria-label="Cart" style="position:relative">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M6 6L5 3H2"/></svg>
+            <span class="cart-badge" data-cart-badge style="display:none">0</span>
+          </a>
+          <a class="icon-btn admin-link" href="#admin" title="Admin" aria-label="Admin">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M4.5 20a7.5 7.5 0 0115 0"/></svg>
+          </a>
+          <button class="hamburger" aria-label="Menu" onclick="document.querySelector('[data-navbar] .nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>`;
+    Store.updateCartBadge();
+  };
+
+  Store.renderFooter = function () {
+    const host = document.querySelector("[data-footer]");
+    if (!host) return;
+    const b = B();
+    host.innerHTML = `
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><strong>${b.name}</strong><em>${b.by}</em></div>
+          <p class="muted">${b.tagline}</p>
+          <p class="muted">${b.going}</p>
+        </div>
+        <div>
+          <h4>Shop</h4>
+          <a href="#shop?category=sarees">Sarees</a>
+          <a href="#shop?category=lehengas">Lehengas</a>
+          <a href="#shop?category=suits">Suits & Kurtis</a>
+          <a href="#shop?category=bridal">Bridal Couture</a>
+        </div>
+        <div>
+          <h4>Help</h4>
+          <a href="#track">Track Order</a>
+          <a href="#about">About Us</a>
+          <a href="#about">Shipping & Returns</a>
+          <a href="#admin">Admin Login</a>
+        </div>
+        <div>
+          <h4>Stay Connected ❤</h4>
+          <a href="https://wa.me/91${b.whatsapp}" target="_blank">WhatsApp: ${b.whatsapp}</a>
+          <a href="tel:${b.phoneDial}">Call: ${b.phone}</a>
+          <a href="mailto:${b.email}">${b.email}</a>
+          <span class="muted">${b.address}</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© ${new Date().getFullYear()} ${b.name} ${b.by}. All rights reserved.</span>
+        <span class="muted">Custom · Crafted · Timeless</span>
+      </div>`;
+  };
+
+  /* ------------------------------------------------------------
+     Shared helpers
+     ------------------------------------------------------------ */
+  const esc = (s) => String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  const attr = (s) => esc(s);
+
+  /* canonical product card (shared by home/shop/product) — links hash-routed */
+  function cardHTML(p) {
+    const off = p.mrp > p.price ? Math.round((p.mrp - p.price) / p.mrp * 100) : 0;
+    const bl = (p.badge || '').toLowerCase();
+    const badgeCls = bl.includes('new') ? 'new' : bl.includes('bridal') ? 'bridal' : '';
+    const catName = (CATS().find(c => c.id === p.category) || {}).name || p.category;
+    return `<article class="card"><a class="card-media" href="#product?id=${p.id}">${p.badge ? `<span class="card-badge ${badgeCls}">${p.badge}</span>` : ''}<img src="${Store.productImg(p)}" alt="${p.name}" loading="lazy"></a><div class="card-body"><span class="card-cat">${catName}</span><a href="#product?id=${p.id}"><h3 class="card-title">${p.name}</h3></a><span class="card-rating">★ ${p.rating} · ${p.fabric}</span><div class="price-row"><span class="price">${Store.money(p.price)}</span>${p.mrp > p.price ? `<span class="mrp">${Store.money(p.mrp)}</span><span class="off">${off}% off</span>` : ''}</div><div class="card-actions"><button class="btn btn-primary btn-sm" onclick="Store.addToCart('${p.id}');Store.toast('Added to cart ❤');Store.updateCartBadge()">Add to Cart</button><a class="btn btn-outline btn-sm" href="#product?id=${p.id}">View</a></div></div></article>`;
+  }
+
+  /* small inline SVG icons (USP / value / about) */
+  const uspIcon = (key) => {
+    const common = `width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"`;
+    const paths = {
+      dress: `<path d="M9 2l3 3 3-3M9 2l-1 5 4 3 4-3-1-5M8 7l-3 6 3 2M16 7l3 6-3 2M8 15v7h8v-7"/>`,
+      fit:   `<path d="M4 12h16M4 12l3-3M4 12l3 3M20 12l-3-3M20 12l-3 3"/><path d="M12 3v3M12 18v3"/>`,
+      heart: `<path d="M12 21s-7-4.5-9.5-9A4.8 4.8 0 0112 5a4.8 4.8 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/>`,
+      lotus: `<path d="M12 21c-4 0-7-2-7-5 0-1 .5-2 1.5-3M12 21c4 0 7-2 7-5 0-1-.5-2-1.5-3M12 21c-2-2-3-4-3-6s1-4 3-6c2 2 3 4 3 6s-1 4-3 6zM6.5 13C5 11 5 8 6.5 6M17.5 13C19 11 19 8 17.5 6"/>`
+    };
+    return `<svg ${common}>${paths[key] || paths.lotus}</svg>`;
+  };
+  const aboutIcon = (key) => {
+    const c = `width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"`;
+    const p = {
+      dress: `<path d="M9 2l3 3 3-3M9 2l-1 5 4 3 4-3-1-5M8 7l-3 6 3 2M16 7l3 6-3 2M8 15v7h8v-7"/>`,
+      fit:   `<path d="M4 12h16M4 12l3-3M4 12l3 3M20 12l-3-3M20 12l-3 3"/><path d="M12 3v3M12 18v3"/>`,
+      heart: `<path d="M12 21s-7-4.5-9.5-9A4.8 4.8 0 0112 5a4.8 4.8 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/>`,
+      lotus: `<path d="M12 21c-4 0-7-2-7-5 0-1 .5-2 1.5-3M12 21c4 0 7-2 7-5 0-1-.5-2-1.5-3M12 21c-2-2-3-4-3-6s1-4 3-6c2 2 3 4 3 6s-1 4-3 6zM6.5 13C5 11 5 8 6.5 6M17.5 13C19 11 19 8 17.5 6"/>`,
+      ship:  `<path d="M3 13h11V6H3zM14 9h4l3 3v4h-7zM7 19a2 2 0 100-4 2 2 0 000 4zM17 19a2 2 0 100-4 2 2 0 000 4z"/>`,
+      cod:   `<rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.4"/><path d="M6 10v4M18 10v4"/>`,
+      ret:   `<path d="M3 12a9 9 0 109-9 9 9 0 00-6.5 2.8M3 4v4h4"/>`,
+      cut:   `<path d="M6 6l12 12M6 18l12-12M9 9a2.5 2.5 0 10-3-3 2.5 2.5 0 003 3zM9 15a2.5 2.5 0 11-3 3 2.5 2.5 0 013-3z"/>`,
+      wa:    `<path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2z"/>`,
+      phone: `<path d="M6 3h3l2 5-2 1a12 12 0 005 5l1-2 5 2v3a2 2 0 01-2 2A16 16 0 014 5a2 2 0 012-2z"/>`,
+      mail:  `<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>`,
+      insta: `<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/>`,
+      pin:   `<path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>`
+    };
+    return `<svg ${c}>${p[key] || p.lotus}</svg>`;
+  };
+
+  /* tracker step helper (confirmation + track) */
+  function trackerHTML(status) {
+    const steps = ['Placed', 'Confirmed', 'Shipped', 'Delivered'];
+    const order = { pending: 1, confirmed: 2, shipped: 3, delivered: 4 };
+    const doneTo = order[status] || 1;
+    return `<div class="tracker">${steps.map((s, i) => `
+      <div class="step ${i < doneTo ? 'done' : ''}">
+        <div class="dot">${i < doneTo ? '✓' : i + 1}</div>${s}
+      </div>`).join('')}</div>`;
+  }
+
+  /* ------------------------------------------------------------
+     2) VIEWS — each returns {html, wire?, title?}
+     ------------------------------------------------------------ */
+
+  /* ---------- HOME ---------- */
+  function renderHome() {
+    const b = B();
+    const main = pickHero('leh-bridal-red', 3), side = pickHero('sar-banarasi-red', 0);
+    function pickHero(id, fb) { return Store.getProduct(id) || Store.getProducts()[fb] || Store.getProducts()[0]; }
+
+    const uspStrip = b.usps.map(u =>
+      `<div class="usp-item"><span class="ic">${uspIcon(u.icon)}</span><strong>${u.title}</strong><span>${u.sub}</span></div>`).join('');
+
+    const heroContact = `
+      <a href="https://wa.me/91${b.whatsapp}" target="_blank">
+        <span class="chip-ic wa"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm4.4 12c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.2 7.2 0 01-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 00-.7.3A2.8 2.8 0 006 8.9a4.8 4.8 0 001 2.5 11 11 0 004.3 3.8c2 .8 2 .5 2.4.5a2.5 2.5 0 001.6-1.1 2 2 0 00.1-1.1c0-.1-.2-.2-.5-.3z"/></svg></span>
+        WhatsApp ${b.whatsapp}
+      </a>
+      <a href="tel:${b.phoneDial}">
+        <span class="chip-ic ph"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h3l2 5-2 1a12 12 0 005 5l1-2 5 2v3a2 2 0 01-2 2A16 16 0 014 5a2 2 0 012-2z"/></svg></span>
+        Call ${b.phone}
+      </a>`;
+
+    const heroArt = `
+      <img class="hero-photo" src="${Store.productImg(main)}" alt="${main.name}">
+      <img class="hero-photo-peek" src="${Store.productImg(side)}" alt="${side.name}">
+      <span class="hero-pill">❖ Going Online · at your door ❤</span>
+      <div class="hero-cap">
+        <strong>VIKALPAYATI</strong><em>by Vishakha</em>
+        <span class="hero-cap-line"></span>
+        <small>Custom · Crafted · Timeless</small>
+      </div>`;
+
+    const featured = Store.getProducts().slice(0, 8).map(cardHTML).join('');
+
+    const catTiles = CATS().map(c => {
+      const rep = Store.getProducts({ category: c.id })[0];
+      const img = rep ? Store.productImg(rep) : '';
+      const count = Store.getProducts({ category: c.id }).length;
+      return `<a href="#shop?category=${c.id}" class="cat-tile">
+        <img src="${img}" alt="${rep ? rep.name : c.name}" loading="lazy">
+        <div class="cat-tile-cap">
+          <strong>${c.name}</strong>
+          <span>${count} ${count === 1 ? 'style' : 'styles'} · Explore →</span>
+        </div>
+      </a>`;
+    }).join('');
+
+    const valueCards = b.usps.map(u =>
+      `<div style="background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)">
+        <span style="color:var(--gold-deep);display:block;margin-bottom:8px">${uspIcon(u.icon)}</span>
+        <strong style="font-family:var(--serif);font-size:1.2rem;display:block;color:var(--maroon)">${u.title}</strong>
+        <span class="muted" style="font-size:.86rem">${u.sub}</span>
+      </div>`).join('');
+
+    const connectCta = `
+      <a class="btn btn-gold" href="https://wa.me/91${b.whatsapp}" target="_blank">Chat on WhatsApp</a>
+      <a class="btn btn-outline" href="tel:${b.phoneDial}" style="border-color:#fff;color:#fff;background:transparent">Call ${b.phone}</a>`;
+
+    return { title: "VIKALPAYATI by Vishakha — Custom · Crafted · Timeless", nav: "home", html: `
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <div class="lotus">✿</div>
+            <div class="eyebrow">Custom · Crafted · Timeless</div>
+            <h1>VIKALPAYATI <span class="script">by Vishakha</span></h1>
+            <div class="going">is going <b>Online</b></div>
+            <div class="atdoor">at your door</div>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#shop">Shop the Collection</a>
+              <a class="btn btn-outline" href="#shop?category=bridal">Bridal Couture</a>
+            </div>
+            <div class="hero-contact" id="hero-contact">${heroContact}</div>
+          </div>
+          <div class="hero-art" id="hero-art">${heroArt}</div>
+        </div>
+      </section>
+      <section class="usp">
+        <div class="container"><div class="usp-grid" id="usp-grid">${uspStrip}</div></div>
+      </section>
+      <section class="section container">
+        <div class="section-head">
+          <div class="eyebrow">Handpicked</div>
+          <h2>Featured Collection</h2>
+          <p class="muted">A curated edit of our most-loved weaves, drapes and couture pieces.</p>
+        </div>
+        <div class="grid grid-products" id="featured-grid">${featured}</div>
+        <div class="center" style="margin-top:40px">
+          <a class="btn btn-outline" href="#shop">View All Products</a>
+        </div>
+      </section>
+      <section class="section" style="background:linear-gradient(135deg,var(--cream),var(--cream-2))">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Explore</div>
+            <h2>Shop by Category</h2>
+            <p class="muted">From everyday grace to bridal grandeur — find your drape.</p>
+          </div>
+          <div class="grid" id="category-grid" style="grid-template-columns:repeat(5,1fr)">${catTiles}</div>
+        </div>
+      </section>
+      <section class="section container">
+        <div class="layout-split" style="grid-template-columns:1fr 1fr;gap:44px;align-items:center">
+          <div>
+            <div class="eyebrow">Why VIKALPAYATI</div>
+            <h2>Tradition, reimagined for you</h2>
+            <p class="muted">Every VIKALPAYATI piece begins with a conversation and ends at your door — stitched to your measurements, finished by hand, and chosen with care. We bring the designer-studio experience online, without losing the warmth of one-on-one service.</p>
+            <div class="divider-heart">❤</div>
+            <p class="muted">Rooted in Indian craft, finished with a modern touch — because timeless never goes out of style.</p>
+            <a class="btn btn-primary" href="#about" style="margin-top:10px">Our Story</a>
+          </div>
+          <div class="grid" style="grid-template-columns:1fr 1fr;gap:18px" id="value-grid">${valueCards}</div>
+        </div>
+      </section>
+      <section class="section" style="background:linear-gradient(135deg,var(--maroon-deep),var(--maroon) 55%,var(--gold-deep));color:var(--cream)">
+        <div class="container center">
+          <div class="eyebrow" style="color:var(--gold-soft)">We'd love to style you</div>
+          <h2 style="color:#fff">Stay Connected ❤</h2>
+          <p style="color:rgba(247,239,228,.85);max-width:560px;margin:0 auto 26px">Message us on WhatsApp or give us a call for custom orders, bridal consultations and styling advice.</p>
+          <div class="hero-cta" id="connect-cta" style="justify-content:center">${connectCta}</div>
+        </div>
+      </section>` };
+  }
+
+  /* ---------- SHOP ---------- */
+  function renderShop(params) {
+    const state = {
+      category: params.get('category') || 'all',
+      q: params.get('q') || '',
+      sort: params.get('sort') || 'featured'
+    };
+
+    const html = `
+      <section class="shop-head">
+        <div class="container">
+          <div class="eyebrow">The Collection</div>
+          <h2>Shop the Collection</h2>
+          <p class="muted">Handwoven sarees, couture lehengas, elegant suits & bridal statements — all made to order.</p>
+        </div>
+      </section>
+      <section class="section container">
+        <div class="toolbar">
+          <div class="chips" id="chips"></div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <input class="search-box" id="q" type="search" placeholder="Search fabric, colour, name…" aria-label="Search">
+            <select class="input" id="sort" aria-label="Sort">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="newest">Newest</option>
+              <option value="rating">Rating</option>
+            </select>
+          </div>
+        </div>
+        <p class="muted" id="result-count" style="margin:0 0 22px"></p>
+        <div class="grid grid-products" id="shop-grid"></div>
+        <div class="empty-state" id="empty" style="display:none">
+          <div class="ic">✿</div>
+          <h3>No pieces match your search</h3>
+          <p class="muted">Try a different category or clear your search.</p>
+          <button class="btn btn-outline" id="clear-filters">Clear Filters</button>
+        </div>
+      </section>`;
+
+    function wire() {
+      const els = {
+        chips: document.getElementById('chips'),
+        grid: document.getElementById('shop-grid'),
+        count: document.getElementById('result-count'),
+        empty: document.getElementById('empty'),
+        q: document.getElementById('q'),
+        sort: document.getElementById('sort')
+      };
+      els.q.value = state.q;
+      els.sort.value = state.sort;
+
+      function sortList(list) {
+        const a = list.slice();
+        switch (state.sort) {
+          case 'price-asc': a.sort((x, y) => x.price - y.price); break;
+          case 'price-desc': a.sort((x, y) => y.price - x.price); break;
+          case 'rating': a.sort((x, y) => y.rating - x.rating); break;
+          case 'newest':
+            a.sort((x, y) => ((y.badge || '').toLowerCase().includes('new') ? 1 : 0) - ((x.badge || '').toLowerCase().includes('new') ? 1 : 0));
+            break;
+        }
+        return a;
+      }
+
+      /* reflect current state into the hash (so refresh/links keep filters) */
+      function syncHash() {
+        const p = new URLSearchParams();
+        if (state.category && state.category !== 'all') p.set('category', state.category);
+        if (state.q) p.set('q', state.q);
+        if (state.sort && state.sort !== 'featured') p.set('sort', state.sort);
+        const qs = p.toString();
+        const target = qs ? `#shop?${qs}` : '#shop';
+        if (location.hash !== target) {
+          suppressNextRoute = true;
+          location.hash = target;
+        }
+      }
+
+      function renderChips() {
+        const cats = [{ id: 'all', name: 'All' }, ...CATS()];
+        els.chips.innerHTML = cats.map(c =>
+          `<button class="chip ${state.category === c.id ? 'active' : ''}" data-cat="${c.id}">${c.name}</button>`).join('');
+        els.chips.querySelectorAll('.chip').forEach(btn => {
+          btn.addEventListener('click', () => { state.category = btn.dataset.cat; apply(); });
+        });
+      }
+
+      function apply() {
+        const filter = {};
+        if (state.category !== 'all') filter.category = state.category;
+        if (state.q) filter.q = state.q;
+        const list = sortList(Store.getProducts(filter));
+        els.grid.innerHTML = list.map(cardHTML).join('');
+        els.empty.style.display = list.length ? 'none' : 'block';
+        const catName = state.category === 'all' ? 'all collections'
+          : ((CATS().find(c => c.id === state.category) || {}).name || state.category);
+        els.count.textContent = `${list.length} ${list.length === 1 ? 'piece' : 'pieces'} in ${catName}${state.q ? ` · “${state.q}”` : ''}`;
+        renderChips();
+        syncHash();
+      }
+
+      let qTimer;
+      els.q.addEventListener('input', () => {
+        clearTimeout(qTimer);
+        qTimer = setTimeout(() => { state.q = els.q.value.trim(); apply(); }, 180);
+      });
+      els.sort.addEventListener('change', () => { state.sort = els.sort.value; apply(); });
+      document.getElementById('clear-filters').addEventListener('click', () => {
+        state.category = 'all'; state.q = ''; state.sort = 'featured';
+        els.q.value = ''; els.sort.value = 'featured'; apply();
+      });
+
+      apply();
+    }
+
+    return { title: "Shop — VIKALPAYATI by Vishakha", nav: "shop", html, wire };
+  }
+
+  /* ---------- PRODUCT ---------- */
+  function renderProduct(params) {
+    const id = params.get('id');
+    const p = id ? Store.getProduct(id) : null;
+
+    if (!p) {
+      return {
+        title: "Product not found — VIKALPAYATI by Vishakha", nav: "shop",
+        wrapClass: "container section",
+        html: `
+          <div class="empty-state">
+            <div class="ic">❤</div>
+            <h1>Product not found</h1>
+            <p class="muted">We couldn't find that piece. It may have been moved or sold out.</p>
+            <a class="btn btn-primary" href="#shop" style="margin-top:14px">Back to Shop</a>
+          </div>`
+      };
+    }
+
+    const off = p.mrp > p.price ? Math.round((p.mrp - p.price) / p.mrp * 100) : 0;
+    const catName = (CATS().find(c => c.id === p.category) || {}).name || p.category;
+    const sizes = ['XS', 'S', 'M', 'L', 'XL', 'Custom'];
+    const stockRow = p.stock > 0
+      ? `<div class="row">📦 In stock · ${p.stock} available</div>`
+      : `<div class="row">🧵 Made to order</div>`;
+
+    let related = Store.getProducts({ category: p.category }).filter(x => x.id !== p.id);
+    if (related.length < 4) {
+      const extra = Store.getProducts().filter(x => x.id !== p.id && x.category !== p.category);
+      related = related.concat(extra);
+    }
+    const relatedHTML = related.slice(0, 4).map(cardHTML).join('');
+
+    const html = `
+      <div class="pd">
+        <div class="pd-media">
+          <img src="${Store.productImg(p)}" alt="${p.name}">
+        </div>
+        <div class="pd-info">
+          <span class="card-cat">${catName}</span>
+          <h1>${p.name}</h1>
+          <div class="card-rating">★ ${p.rating}</div>
+          <div class="pd-price">
+            <span class="price">${Store.money(p.price)}</span>
+            ${p.mrp > p.price ? `<span class="mrp">${Store.money(p.mrp)}</span><span class="off">${off}% off</span>` : ''}
+          </div>
+          <p class="muted">${p.desc || ''}</p>
+          <div class="pd-fabric">
+            <span class="tag">Fabric · ${p.fabric}</span>
+            <span class="tag">Colour · ${p.color}</span>
+            <span class="tag">Custom fit available</span>
+          </div>
+          <div>
+            <label style="display:block;font-size:.85rem;font-weight:500;margin-bottom:4px">Select Size</label>
+            <div class="size-row" id="size-row">
+              ${sizes.map(s => `<button class="size-opt" data-size="${s}" type="button">${s}</button>`).join('')}
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;margin:16px 0">
+            <div class="qty" id="qty">
+              <button type="button" id="q-dec">−</button>
+              <input type="text" id="q-val" value="1" readonly aria-label="Quantity">
+              <button type="button" id="q-inc">+</button>
+            </div>
+          </div>
+          <div class="pd-actions">
+            <button class="btn btn-primary" id="add-cart">Add to Cart</button>
+            <button class="btn btn-gold" id="buy-now">Buy Now</button>
+          </div>
+          <div class="pd-meta">
+            <div class="row">🚚 Delivery in 3–7 days · Free above ₹2999</div>
+            <div class="row">💵 Cash on Delivery available</div>
+            <div class="row">↩ 7-day easy returns</div>
+            ${stockRow}
+          </div>
+        </div>
+      </div>
+      <section class="section" style="padding-bottom:0">
+        <div class="section-head">
+          <div class="eyebrow">Handpicked for you</div>
+          <h2>You may also like</h2>
+        </div>
+        <div class="grid grid-products" id="related-grid">${relatedHTML}</div>
+      </section>`;
+
+    function wire() {
+      let chosenSize = 'Free Size';
+      const sizeRow = document.getElementById('size-row');
+      sizeRow.querySelectorAll('.size-opt').forEach(btn => {
+        btn.addEventListener('click', () => {
+          sizeRow.querySelectorAll('.size-opt').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          chosenSize = btn.dataset.size;
+        });
+      });
+      const qVal = document.getElementById('q-val');
+      const getQty = () => Math.max(1, parseInt(qVal.value, 10) || 1);
+      document.getElementById('q-dec').addEventListener('click', () => { qVal.value = Math.max(1, getQty() - 1); });
+      document.getElementById('q-inc').addEventListener('click', () => { qVal.value = getQty() + 1; });
+      document.getElementById('add-cart').addEventListener('click', () => {
+        Store.addToCart(p.id, getQty(), chosenSize);
+        Store.updateCartBadge();
+        Store.toast('Added to cart ❤');
+      });
+      document.getElementById('buy-now').addEventListener('click', () => {
+        Store.addToCart(p.id, getQty(), chosenSize);
+        Store.updateCartBadge();
+        location.hash = '#checkout';
+      });
+    }
+
+    return { title: p.name + " — VIKALPAYATI by Vishakha", nav: "shop", wrapClass: "container section", html, wire };
+  }
+
+  /* ---------- CART ---------- */
+  function renderCart() {
+    function build() {
+      const items = Store.cartItemsDetailed();
+      Store.updateCartBadge();
+      const root = app().querySelector('#cart-root');
+      if (!root) return;
+
+      if (!items.length) {
+        root.innerHTML = `
+          <h1>Your Cart</h1>
+          <div class="empty-state">
+            <div class="ic">🛍</div>
+            <h2>Your cart is empty</h2>
+            <p class="muted">Looks like you haven't added anything yet. Let's find you something beautiful.</p>
+            <a class="btn btn-primary" href="#shop" style="margin-top:14px">Start Shopping</a>
+          </div>`;
+        return;
+      }
+
+      const brand = B();
+      const subtotal = Store.cartSubtotal();
+      const shipping = Store.shippingFor(subtotal);
+      const total = subtotal + shipping;
+      const remaining = brand.freeShipAbove - subtotal;
+
+      const rows = items.map(it => `
+        <div class="cart-item">
+          <a class="ci-media" href="#product?id=${it.id}">
+            <img src="${Store.productImg(it)}" alt="${it.name}">
+          </a>
+          <div>
+            <a href="#product?id=${it.id}"><div class="ci-name">${it.name}</div></a>
+            <div class="ci-sub">Size: ${it.size} · ${it.fabric}</div>
+            <div class="qty" style="margin-top:10px">
+              <button type="button" data-act="dec" data-id="${it.id}" data-size="${it.size}">−</button>
+              <input type="text" value="${it.qty}" readonly aria-label="Quantity">
+              <button type="button" data-act="inc" data-id="${it.id}" data-size="${it.size}">+</button>
+            </div>
+          </div>
+          <div class="ci-right">
+            <div class="price">${Store.money(it.lineTotal)}</div>
+            <div class="ci-sub">${Store.money(it.price)} each</div>
+            <button class="link-danger" data-act="rm" data-id="${it.id}" data-size="${it.size}">Remove</button>
+          </div>
+        </div>`).join('');
+
+      root.innerHTML = `
+        <h1>Your Cart</h1>
+        <div class="layout-split" style="margin-top:20px">
+          <div class="cart-list">${rows}</div>
+          <aside class="summary">
+            <h3>Order Summary</h3>
+            <div class="sum-row"><span>Subtotal</span><span>${Store.money(subtotal)}</span></div>
+            <div class="sum-row"><span>Shipping</span><span>${shipping === 0 ? 'FREE' : Store.money(shipping)}</span></div>
+            <div class="sum-row total"><span>Total</span><span>${Store.money(total)}</span></div>
+            <a class="btn btn-primary btn-block" href="#checkout" style="margin-top:16px">Proceed to Checkout</a>
+            <a class="btn btn-ghost btn-block" href="#shop" style="margin-top:10px">Continue Shopping</a>
+            <p class="muted" style="font-size:.82rem;margin-top:14px;text-align:center">
+              ${shipping === 0
+                ? '🎉 You have unlocked FREE shipping!'
+                : `Add ${Store.money(remaining)} more for FREE shipping ❤`}
+            </p>
+          </aside>
+        </div>`;
+
+      root.querySelectorAll('[data-act]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const { act, id, size } = btn.dataset;
+          const item = Store.cartItemsDetailed().find(x => x.id === id && x.size === size);
+          if (act === 'rm') Store.removeFromCart(id, size);
+          else if (act === 'inc') Store.setQty(id, (item ? item.qty : 1) + 1, size);
+          else if (act === 'dec') Store.setQty(id, Math.max(0, (item ? item.qty : 1) - 1), size);
+          build();
+        });
+      });
+    }
+
+    return { title: "Your Cart — VIKALPAYATI by Vishakha", nav: "shop", wrapClass: "container section", html: `<div id="cart-root"></div>`, wire: build };
+  }
+
+  /* ---------- CHECKOUT ---------- */
+  function renderCheckout() {
+    const brand = B();
+
+    const html = `<div id="checkout-root"></div>
+      <div class="modal-backdrop" id="pay-modal">
+        <div class="modal">
+          <div class="modal-head">
+            <h3>Secure Payment</h3>
+            <button class="x-close" type="button" id="pay-close" aria-label="Close">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p class="muted" style="margin-top:0">Amount payable</p>
+            <div class="price" style="font-size:2rem" id="pay-amount">₹0</div>
+            <div style="display:flex;gap:10px;margin:18px 0 6px">
+              <button class="chip active" type="button" id="tab-upi">UPI</button>
+              <button class="chip" type="button" id="tab-card">Card</button>
+            </div>
+            <div id="upi-fields">
+              <div class="field">
+                <label for="upi-id">UPI ID</label>
+                <input type="text" id="upi-id" placeholder="yourname@upi">
+              </div>
+            </div>
+            <div id="card-fields" style="display:none">
+              <div class="field">
+                <label for="card-num">Card Number</label>
+                <input type="text" id="card-num" placeholder="1234 5678 9012 3456" maxlength="19">
+              </div>
+              <div class="grid-2">
+                <div class="field">
+                  <label for="card-exp">Expiry</label>
+                  <input type="text" id="card-exp" placeholder="MM/YY" maxlength="5">
+                </div>
+                <div class="field">
+                  <label for="card-cvv">CVV</label>
+                  <input type="text" id="card-cvv" placeholder="123" maxlength="4">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-foot">
+            <button class="btn btn-ghost" type="button" id="pay-cancel">Cancel</button>
+            <button class="btn btn-primary" type="button" id="pay-now">Pay ₹0</button>
+          </div>
+        </div>
+      </div>`;
+
+    function wire() {
+      const root = document.getElementById('checkout-root');
+
+      if (!Store.cartItemsDetailed().length) {
+        root.innerHTML = `
+          <h1>Checkout</h1>
+          <div class="empty-state">
+            <div class="ic">🛍</div>
+            <h2>Your cart is empty</h2>
+            <p class="muted">Add something lovely before checking out.</p>
+            <a class="btn btn-primary" href="#shop" style="margin-top:14px">Go to Shop</a>
+          </div>`;
+        return;
+      }
+
+      const method = () => {
+        const r = root.querySelector('input[name="pay"]:checked');
+        return r ? r.value : 'cod';
+      };
+      const compute = () => {
+        const items = Store.cartItemsDetailed().map(i => ({
+          id: i.id, name: i.name, price: i.price, qty: i.qty, size: i.size, lineTotal: i.lineTotal
+        }));
+        const subtotal = Store.cartSubtotal();
+        const shipping = Store.shippingFor(subtotal);
+        const codFee = method() === 'cod' ? brand.codFee : 0;
+        const total = subtotal + shipping + codFee;
+        return { items, subtotal, shipping, codFee, total };
+      };
+      const customer = () => {
+        const v = id => document.getElementById(id).value.trim();
+        return {
+          name: v('f-name'), phone: v('f-phone'), email: v('f-email'),
+          address: v('f-address'), city: v('f-city'), state: v('f-state'), pincode: v('f-pincode')
+        };
+      };
+      const validate = () => {
+        const v = id => document.getElementById(id).value.trim();
+        const checks = {
+          name: v('f-name').length > 0,
+          phone: /^\d{10}$/.test(v('f-phone')),
+          email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('f-email')),
+          address: v('f-address').length > 0,
+          city: v('f-city').length > 0,
+          state: v('f-state').length > 0,
+          pincode: /^\d{6}$/.test(v('f-pincode'))
+        };
+        let ok = true;
+        Object.keys(checks).forEach(f => {
+          const field = root.querySelector(`.field[data-f="${f}"]`);
+          if (checks[f]) field.classList.remove('invalid');
+          else { field.classList.add('invalid'); ok = false; }
+        });
+        return ok;
+      };
+
+      function renderSummary() {
+        const { items, subtotal, shipping, codFee, total } = compute();
+        document.getElementById('co-items').innerHTML = items.map(it => `
+          <div class="sum-row"><span>${it.name} ×${it.qty}</span><span>${Store.money(it.lineTotal)}</span></div>`).join('') +
+          `<div style="border-top:1px solid var(--line);margin:8px 0"></div>`;
+        document.getElementById('co-subtotal').textContent = Store.money(subtotal);
+        document.getElementById('co-shipping').textContent = shipping === 0 ? 'FREE' : Store.money(shipping);
+        document.getElementById('co-codrow').style.display = codFee ? 'flex' : 'none';
+        document.getElementById('co-codfee').textContent = Store.money(codFee);
+        document.getElementById('co-total').textContent = Store.money(total);
+      }
+
+      function finalize(payment) {
+        const { items, subtotal, shipping, codFee, total } = compute();
+        const order = Store.placeOrder({ items, subtotal, shipping, codFee, total, customer: customer(), payment });
+        Store.clearCart();
+        Store.updateCartBadge();
+        location.hash = '#order?id=' + order.id;
+      }
+
+      const modal = document.getElementById('pay-modal');
+      const openModal = () => {
+        const { total } = compute();
+        document.getElementById('pay-amount').textContent = Store.money(total);
+        document.getElementById('pay-now').textContent = 'Pay ' + Store.money(total);
+        modal.classList.add('open');
+      };
+      const closeModal = () => modal.classList.remove('open');
+
+      function onPlace() {
+        if (!validate()) {
+          Store.toast('Please fix the highlighted fields', 'err');
+          root.querySelector('.field.invalid input,.field.invalid textarea')?.focus();
+          return;
+        }
+        if (method() === 'online') openModal();
+        else finalize({ method: 'cod', status: 'pending' });
+      }
+
+      function doPay() {
+        const btn = document.getElementById('pay-now');
+        btn.disabled = true;
+        btn.textContent = 'Processing…';
+        setTimeout(() => {
+          const ref = 'TXN' + String(Date.now()).slice(-6);
+          finalize({ method: 'online', status: 'paid', ref });
+        }, 1000);
+      }
+
+      root.innerHTML = `
+        <h1>Checkout</h1>
+        <div class="layout-split" style="margin-top:20px">
+          <div class="panel" style="padding:24px">
+            <h3 style="margin-top:0">Delivery Details</h3>
+            <form id="co-form" novalidate>
+              <div class="field" data-f="name">
+                <label for="f-name">Full Name</label>
+                <input type="text" id="f-name" placeholder="Your full name">
+                <span class="err">Please enter your name.</span>
+              </div>
+              <div class="grid-2">
+                <div class="field" data-f="phone">
+                  <label for="f-phone">Phone</label>
+                  <input type="tel" id="f-phone" placeholder="10-digit mobile" maxlength="10">
+                  <span class="err">Enter a valid 10-digit phone.</span>
+                </div>
+                <div class="field" data-f="email">
+                  <label for="f-email">Email</label>
+                  <input type="email" id="f-email" placeholder="you@email.com">
+                  <span class="err">Enter a valid email.</span>
+                </div>
+              </div>
+              <div class="field" data-f="address">
+                <label for="f-address">Address</label>
+                <textarea id="f-address" rows="3" placeholder="House no, street, area, landmark"></textarea>
+                <span class="err">Please enter your address.</span>
+              </div>
+              <div class="grid-2">
+                <div class="field" data-f="city">
+                  <label for="f-city">City</label>
+                  <input type="text" id="f-city" placeholder="City">
+                  <span class="err">Please enter your city.</span>
+                </div>
+                <div class="field" data-f="state">
+                  <label for="f-state">State</label>
+                  <input type="text" id="f-state" placeholder="State">
+                  <span class="err">Please enter your state.</span>
+                </div>
+              </div>
+              <div class="field" data-f="pincode" style="max-width:220px">
+                <label for="f-pincode">Pincode</label>
+                <input type="text" id="f-pincode" placeholder="6-digit pincode" maxlength="6">
+                <span class="err">Enter a valid 6-digit pincode.</span>
+              </div>
+              <h3 style="margin:22px 0 14px">Payment Method</h3>
+              <label class="pay-opt active" data-pay="cod">
+                <input type="radio" name="pay" value="cod" checked>
+                <div>
+                  <div class="po-title">Cash on Delivery</div>
+                  <div class="po-sub">Pay ${Store.money(brand.codFee)} extra on delivery</div>
+                </div>
+              </label>
+              <label class="pay-opt" data-pay="online">
+                <input type="radio" name="pay" value="online">
+                <div>
+                  <div class="po-title">Pay Online — UPI / Card</div>
+                  <div class="po-sub">Secure payment</div>
+                </div>
+              </label>
+            </form>
+          </div>
+          <aside class="summary">
+            <h3>Order Summary</h3>
+            <div id="co-items"></div>
+            <div class="sum-row"><span>Subtotal</span><span id="co-subtotal"></span></div>
+            <div class="sum-row"><span>Shipping</span><span id="co-shipping"></span></div>
+            <div class="sum-row" id="co-codrow"><span>COD Fee</span><span id="co-codfee"></span></div>
+            <div class="sum-row total"><span>Total</span><span id="co-total"></span></div>
+            <button class="btn btn-primary btn-block" type="button" id="place-order" style="margin-top:16px">Place Order</button>
+          </aside>
+        </div>`;
+
+      root.querySelectorAll('.pay-opt').forEach(opt => {
+        opt.addEventListener('click', () => {
+          root.querySelectorAll('.pay-opt').forEach(o => o.classList.remove('active'));
+          opt.classList.add('active');
+          opt.querySelector('input').checked = true;
+          renderSummary();
+        });
+      });
+
+      renderSummary();
+      document.getElementById('place-order').addEventListener('click', onPlace);
+
+      /* payment modal wiring */
+      document.getElementById('pay-close').addEventListener('click', closeModal);
+      document.getElementById('pay-cancel').addEventListener('click', closeModal);
+      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+      const upiTab = document.getElementById('tab-upi');
+      const cardTab = document.getElementById('tab-card');
+      upiTab.addEventListener('click', () => {
+        upiTab.classList.add('active'); cardTab.classList.remove('active');
+        document.getElementById('upi-fields').style.display = '';
+        document.getElementById('card-fields').style.display = 'none';
+      });
+      cardTab.addEventListener('click', () => {
+        cardTab.classList.add('active'); upiTab.classList.remove('active');
+        document.getElementById('card-fields').style.display = '';
+        document.getElementById('upi-fields').style.display = 'none';
+      });
+      document.getElementById('pay-now').addEventListener('click', doPay);
+    }
+
+    return { title: "Checkout — VIKALPAYATI by Vishakha", nav: "shop", wrapClass: "container section", html, wire };
+  }
+
+  /* ---------- ORDER CONFIRMATION ---------- */
+  function renderConfirmation(params) {
+    const id = params.get('id');
+    const o = id ? Store.getOrder(id) : null;
+
+    if (!o) {
+      return {
+        title: "Order Confirmed — VIKALPAYATI by Vishakha", nav: "shop", wrapClass: "container section",
+        html: `
+          <div class="empty-state">
+            <div class="ic">🔍</div>
+            <h1>Order not found</h1>
+            <p class="muted">We couldn't find that order. Please check the link or track by Order ID.</p>
+            <a class="btn btn-primary" href="#track" style="margin-top:14px">Track an Order</a>
+          </div>`
+      };
+    }
+
+    const c = o.customer || {};
+    const dateStr = new Date(o.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    const payMethod = o.payment.method === 'cod' ? 'Cash on Delivery' : 'Online (UPI / Card)';
+    const payBadge = o.payment.status === 'paid'
+      ? `<span class="badge paid">Paid</span>`
+      : `<span class="badge pending">Pending</span>`;
+    const itemRows = o.items.map(it => `
+      <tr>
+        <td>${it.name}</td>
+        <td>${it.size}</td>
+        <td>${it.qty}</td>
+        <td style="text-align:right">${Store.money(it.lineTotal)}</td>
+      </tr>`).join('');
+    const waText = encodeURIComponent(`Hi VIKALPAYATI! I just placed order ${o.id} for ${Store.money(o.total)}. Looking forward to it ❤`);
+
+    const html = `
+      <div class="center" style="max-width:560px;margin:0 auto 20px">
+        <div style="width:84px;height:84px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2.6rem;margin:0 auto 18px">✔</div>
+        <div class="eyebrow">Thank you!</div>
+        <h1 style="margin:.1em 0">Order Placed</h1>
+        <p class="muted">Order #${o.id} · ${dateStr}</p>
+      </div>
+      <div class="panel" style="padding:24px;max-width:860px;margin:0 auto">
+        ${trackerHTML(o.status)}
+      </div>
+      <div class="layout-split" style="max-width:860px;margin:28px auto 0;grid-template-columns:1.6fr 1fr">
+        <div class="panel" style="padding:0">
+          <div class="panel-head"><h3>Order Details</h3></div>
+          <table>
+            <thead><tr><th>Item</th><th>Size</th><th>Qty</th><th style="text-align:right">Total</th></tr></thead>
+            <tbody>${itemRows}</tbody>
+          </table>
+          <div style="padding:16px 22px">
+            <div class="sum-row"><span>Subtotal</span><span>${Store.money(o.subtotal)}</span></div>
+            <div class="sum-row"><span>Shipping</span><span>${o.shipping === 0 ? 'FREE' : Store.money(o.shipping)}</span></div>
+            ${o.codFee ? `<div class="sum-row"><span>COD Fee</span><span>${Store.money(o.codFee)}</span></div>` : ''}
+            <div class="sum-row total"><span>Total</span><span>${Store.money(o.total)}</span></div>
+          </div>
+        </div>
+        <aside class="summary" style="position:static">
+          <h3>Payment</h3>
+          <div class="sum-row"><span>Method</span><span>${payMethod}</span></div>
+          <div class="sum-row"><span>Status</span><span>${payBadge}</span></div>
+          ${o.payment.ref ? `<div class="sum-row"><span>Ref</span><span>${o.payment.ref}</span></div>` : ''}
+          <h3 style="margin-top:18px">Delivery Address</h3>
+          <p class="muted" style="font-size:.9rem;line-height:1.5;margin:0">
+            <strong style="color:var(--ink)">${c.name || ''}</strong><br>
+            ${c.address || ''}<br>
+            ${c.city || ''}, ${c.state || ''} — ${c.pincode || ''}<br>
+            📞 ${c.phone || ''}
+          </p>
+        </aside>
+      </div>
+      <div class="center" style="margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-primary" href="#track?id=${o.id}">Track Order</a>
+        <a class="btn btn-outline" href="#shop">Continue Shopping</a>
+        <a class="btn btn-gold" href="https://wa.me/919755816439?text=${waText}" target="_blank">Share on WhatsApp</a>
+      </div>`;
+
+    return { title: "Order Confirmed — VIKALPAYATI by Vishakha", nav: "shop", wrapClass: "container section", html };
+  }
+
+  /* ---------- TRACK ---------- */
+  function renderTrack(params) {
+    const html = `
+      <div class="section-head">
+        <div class="eyebrow">Order Status</div>
+        <h1>Track Your Order</h1>
+        <p class="muted">Enter your Order ID to see the latest status.</p>
+      </div>
+      <div class="panel" style="padding:24px;max-width:560px;margin:0 auto">
+        <div class="field" style="margin-bottom:12px">
+          <label for="track-id">Order ID</label>
+          <input type="text" id="track-id" placeholder="e.g. VP12345601">
+        </div>
+        <button class="btn btn-primary btn-block" type="button" id="track-btn">Track</button>
+      </div>
+      <div id="track-result" style="max-width:860px;margin:30px auto 0"></div>`;
+
+    function wire() {
+      const input = document.getElementById('track-id');
+      const result = document.getElementById('track-result');
+
+      function lookup(id) {
+        const trimmed = (id || '').trim();
+        if (!trimmed) { result.innerHTML = ''; Store.toast('Please enter an Order ID', 'err'); return; }
+        const o = Store.getOrder(trimmed);
+        if (!o) {
+          result.innerHTML = `
+            <div class="empty-state">
+              <div class="ic">🔍</div>
+              <h2>No order found</h2>
+              <p class="muted">We couldn't find an order with ID "<strong>${trimmed}</strong>". Please check and try again.</p>
+            </div>`;
+          return;
+        }
+        const dateStr = new Date(o.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+        const count = o.items.reduce((n, it) => n + it.qty, 0);
+        result.innerHTML = `
+          <div class="panel" style="padding:24px">
+            <div class="panel-head" style="padding:0 0 16px">
+              <h3>Order #${o.id}</h3>
+              <span class="badge ${o.status}">${o.status}</span>
+            </div>
+            ${trackerHTML(o.status)}
+            <div class="sum-row"><span>Placed on</span><span>${dateStr}</span></div>
+            <div class="sum-row"><span>Items</span><span>${count} item${count !== 1 ? 's' : ''}</span></div>
+            <div class="sum-row"><span>Payment</span><span>${o.payment.method === 'cod' ? 'Cash on Delivery' : 'Online'}</span></div>
+            <div class="sum-row total"><span>Total</span><span>${Store.money(o.total)}</span></div>
+            <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+              <a class="btn btn-outline btn-sm" href="#order?id=${o.id}">View Order Details</a>
+            </div>
+          </div>`;
+      }
+
+      document.getElementById('track-btn').addEventListener('click', () => lookup(input.value));
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') lookup(input.value); });
+
+      const qid = params.get('id');
+      if (qid) { input.value = qid; lookup(qid); }
+    }
+
+    return { title: "Track Order — VIKALPAYATI by Vishakha", nav: "track", wrapClass: "container section", html, wire };
+  }
+
+  /* ---------- ABOUT ---------- */
+  function renderAbout() {
+    const b = B();
+    const valueGrid = b.usps.map(u =>
+      `<div style="background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);text-align:center">
+        <span style="color:var(--gold-deep);display:flex;justify-content:center;margin-bottom:10px">${aboutIcon(u.icon)}</span>
+        <strong style="font-family:var(--serif);font-size:1.25rem;display:block;color:var(--maroon)">${u.title}</strong>
+        <span class="muted" style="font-size:.88rem">${u.sub}</span>
+      </div>`).join('');
+
+    const policies = [
+      { ic: 'ship', title: 'Shipping', body: `Free shipping on all orders above ${Store.money(b.freeShipAbove)}. A flat ${Store.money(b.shipFlat)} applies below that. Orders are dispatched pan-India once your piece is ready.` },
+      { ic: 'cod', title: 'Cash on Delivery', body: `COD is available across India with a small handling fee of ${Store.money(b.codFee)} per order. Prefer to pay online? Secure prepaid options are available at checkout.` },
+      { ic: 'ret', title: '7-Day Easy Returns', body: `Not in love with it? Request a return within 7 days of delivery for ready-to-wear pieces, in original condition with tags intact.` },
+      { ic: 'cut', title: 'Custom-Fit Stitching', body: `Many pieces are stitched to your measurements. Custom-fit and altered orders are made just for you, so they fall outside the standard return window — message us and we'll make it right.` }
+    ];
+    const policyGrid = policies.map(p =>
+      `<div style="background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)">
+        <span style="color:var(--maroon);display:block;margin-bottom:10px">${aboutIcon(p.ic)}</span>
+        <h3 style="font-size:1.3rem;margin-bottom:8px">${p.title}</h3>
+        <p class="muted" style="margin:0">${p.body}</p>
+      </div>`).join('');
+
+    const tile = (ic, label, value, href, ext) =>
+      `<a href="${href}"${ext ? ' target="_blank"' : ''} style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);padding:24px;text-align:center;color:var(--cream);transition:.2s">
+        <span style="color:var(--gold-soft);display:flex;justify-content:center;margin-bottom:10px">${aboutIcon(ic)}</span>
+        <strong style="font-family:var(--serif);font-size:1.2rem;display:block;color:#fff">${label}</strong>
+        <span style="font-size:.9rem;color:rgba(247,239,228,.85)">${value}</span>
+      </a>`;
+    const contactGrid = [
+      tile('wa', 'WhatsApp', b.whatsapp, `https://wa.me/91${b.whatsapp}`, true),
+      tile('phone', 'Call Us', b.phone, `tel:${b.phoneDial}`, false),
+      tile('mail', 'Email', b.email, `mailto:${b.email}`, false),
+      tile('insta', 'Instagram', '@' + b.instagram, `https://instagram.com/${b.instagram}`, true),
+      tile('pin', 'Visit', b.address, `https://maps.google.com/?q=${encodeURIComponent(b.address)}`, true)
+    ].join('');
+
+    const contactCta = `
+      <a class="btn btn-gold" href="https://wa.me/91${b.whatsapp}" target="_blank">Message on WhatsApp</a>
+      <a class="btn btn-outline" href="tel:${b.phoneDial}" style="border-color:#fff;color:#fff;background:transparent">Call ${b.phone}</a>`;
+
+    return { title: "About — VIKALPAYATI by Vishakha", nav: "about", html: `
+      <section class="shop-head">
+        <div class="container">
+          <div class="eyebrow">Custom · Crafted · Timeless</div>
+          <h2>VIKALPAYATI <span class="script">by Vishakha</span></h2>
+          <p class="muted">is going Online, at your door.</p>
+        </div>
+      </section>
+      <section class="section container">
+        <div class="layout-split" style="grid-template-columns:1.1fr .9fr;gap:44px;align-items:center">
+          <div>
+            <div class="eyebrow">Our Story</div>
+            <h2>Designer wear, made personal</h2>
+            <p class="muted">VIKALPAYATI by Vishakha was born from a simple belief — that ethnic wear should feel as personal as it is beautiful. Each piece is designed, stitched and finished with the care of a studio that knows you by name.</p>
+            <p class="muted">For years our clients have come to us for weddings, festivals and the everyday moments in between. Now we are bringing that same hand-crafted, custom-fit experience online — so timeless Indian couture is only ever a message away, delivered right to your door.</p>
+            <div class="divider-heart">❤</div>
+            <p class="muted">Rooted in tradition, finished with a modern touch. That is the VIKALPAYATI promise.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#shop">Shop the Collection</a>
+              <a class="btn btn-outline" href="#shop?category=bridal">Bridal Couture</a>
+            </div>
+          </div>
+          <div class="hero-art" style="aspect-ratio:4/5">
+            <div class="plaque">
+              <div class="big">V</div>
+              <div class="ln"></div>
+              <em>by Vishakha</em>
+              <div class="ln"></div>
+              <div style="letter-spacing:3px;font-size:.8rem;text-transform:uppercase;color:var(--gold-soft)">Est. in craft, worn with pride</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section" style="background:linear-gradient(135deg,var(--cream),var(--cream-2))">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">What We Stand For</div>
+            <h2>Four promises, every piece</h2>
+          </div>
+          <div class="grid" id="value-grid" style="grid-template-columns:repeat(4,1fr)">${valueGrid}</div>
+        </div>
+      </section>
+      <section class="section container" id="policy">
+        <div class="section-head">
+          <div class="eyebrow">Good to Know</div>
+          <h2>Shipping, Returns & COD</h2>
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(2,1fr)" id="policy-grid">${policyGrid}</div>
+      </section>
+      <section class="section" style="background:linear-gradient(135deg,var(--maroon-deep),var(--maroon) 55%,var(--gold-deep));color:var(--cream)">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow" style="color:var(--gold-soft)">Say Hello</div>
+            <h2 style="color:#fff">Stay Connected ❤</h2>
+            <p style="color:rgba(247,239,228,.85)">For custom orders, bridal consultations or a styling chat — reach us any way you like.</p>
+          </div>
+          <div class="grid" style="grid-template-columns:repeat(3,1fr)" id="contact-grid">${contactGrid}</div>
+          <div class="hero-cta" id="contact-cta" style="justify-content:center;margin-top:34px">${contactCta}</div>
+        </div>
+      </section>` };
+  }
+
+  /* ============================================================
+     ADMIN — full dashboard (login gate, shell, CRUD, orders, settings)
+     Renders into #app full-bleed (navbar/footer/banner/fab hidden by router).
+     ============================================================ */
+  function renderAdmin() {
+    return { title: "Admin — VIKALPAYATI", nav: "admin", admin: true, html: "", wire: adminWire };
+  }
+
+  function adminWire() {
+    let currentTab = "dashboard";
+
+    const statusBadge = (status) => `<span class="badge ${esc(status)}">${esc(status)}</span>`;
+    const paymentBadge = (o) => {
+      const method = o.payment && o.payment.method === "cod"
+        ? `<span class="badge cod">COD</span>`
+        : `<span class="badge paid">Online</span>`;
+      const st = o.payment && o.payment.status === "paid" ? "paid" : "pending";
+      const stat = `<span class="badge ${st}">${esc(o.payment ? o.payment.status : "pending")}</span>`;
+      return method + " " + stat;
+    };
+    const itemCount = (o) => (o.items || []).reduce((n, it) => n + (it.qty || 0), 0);
+    const fmtDate = (iso) => {
+      const d = iso ? new Date(iso) : new Date();
+      return d.toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
+    };
+    const todayStr = () => new Date().toLocaleDateString("en-IN", { weekday: "long", day: "2-digit", month: "long", year: "numeric" });
+    const slug = (name) => String(name || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    const uniqueId = (base) => {
+      let id = base || "product";
+      if (!Store.getProduct(id)) return id;
+      let n = 2;
+      while (Store.getProduct(id + "-" + n)) n++;
+      return id + "-" + n;
+    };
+    const brandLockup = () => `
+      <a class="brand" href="#/">
+        <span class="brand-mark">❖</span>
+        <span class="brand-text"><strong>${esc(B().name || "VIKALPAYATI")}</strong><em>${esc(B().by || "")}</em></span>
+      </a>`;
+
+    function closeModal() { const bd = document.getElementById("admin-modal"); if (bd) bd.remove(); }
+    function openModal(title, bodyHTML, footHTML) {
+      closeModal();
+      const bd = document.createElement("div");
+      bd.className = "modal-backdrop open";
+      bd.id = "admin-modal";
+      bd.innerHTML = `
+        <div class="modal" role="dialog" aria-modal="true">
+          <div class="modal-head">
+            <h3>${esc(title)}</h3>
+            <button class="x-close" data-close aria-label="Close">×</button>
+          </div>
+          <div class="modal-body">${bodyHTML}</div>
+          <div class="modal-foot">${footHTML || ""}</div>
+        </div>`;
+      document.body.appendChild(bd);
+      bd.addEventListener("click", (e) => { if (e.target === bd || e.target.closest("[data-close]")) closeModal(); });
+      return bd;
+    }
+
+    /* ---------- LOGIN ---------- */
+    function renderLogin() {
+      app().innerHTML = `
+        <div class="admin-login">
+          <div class="box">
+            <div style="text-align:center;margin-bottom:8px">${brandLockup()}</div>
+            <h3 style="text-align:center;margin-top:14px">Admin Login</h3>
+            <form id="login-form" autocomplete="off">
+              <div class="field">
+                <label for="lg-user">Username</label>
+                <input type="text" id="lg-user" placeholder="admin" autofocus>
+              </div>
+              <div class="field" id="lg-pass-field">
+                <label for="lg-pass">Password</label>
+                <input type="password" id="lg-pass" placeholder="••••••••">
+                <span class="err">Invalid credentials. Please try again.</span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+            <p class="muted" style="text-align:center;margin:14px 0 6px;font-size:.82rem">Demo: admin / vikalpayati123</p>
+            <p style="text-align:center;margin:0"><a href="#/" style="color:var(--maroon);font-size:.88rem">← Back to store</a></p>
+          </div>
+        </div>`;
+      const form = document.getElementById("login-form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const u = document.getElementById("lg-user").value.trim();
+        const p = document.getElementById("lg-pass").value;
+        if (Store.adminLogin(u, p)) { currentTab = "dashboard"; render(); }
+        else { Store.toast("Invalid credentials", "err"); document.getElementById("lg-pass-field").classList.add("invalid"); }
+      });
+      document.getElementById("lg-pass").addEventListener("input", () => {
+        document.getElementById("lg-pass-field").classList.remove("invalid");
+      });
+    }
+
+    /* ---------- SHELL ---------- */
+    function renderShell() {
+      const navBtn = (key, label) => `<button data-tab="${key}" class="${currentTab === key ? "active" : ""}">${label}</button>`;
+      app().innerHTML = `
+        <div class="admin-shell">
+          <aside class="admin-side">
+            ${brandLockup()}
+            <nav class="admin-nav">
+              ${navBtn("dashboard", "Dashboard")}
+              ${navBtn("products", "Products")}
+              ${navBtn("orders", "Orders")}
+              ${navBtn("settings", "Settings")}
+            </nav>
+            <div style="margin-top:26px;display:flex;flex-direction:column;gap:6px">
+              <a href="#/" class="btn btn-outline btn-sm btn-block" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">View Store</a>
+              <button id="logout-btn" class="btn btn-ghost btn-sm btn-block" style="color:var(--gold-soft)">Logout</button>
+            </div>
+          </aside>
+          <main class="admin-main" id="admin-main"></main>
+        </div>`;
+      app().querySelectorAll(".admin-nav button").forEach((btn) => {
+        btn.addEventListener("click", () => { currentTab = btn.getAttribute("data-tab"); render(); });
+      });
+      document.getElementById("logout-btn").addEventListener("click", () => { Store.adminLogout(); render(); });
+      renderTab();
+    }
+
+    function renderTab() {
+      if (currentTab === "products") renderProductsTab();
+      else if (currentTab === "orders") renderOrdersTab();
+      else if (currentTab === "settings") renderSettingsTab();
+      else renderDashboard();
+    }
+
+    /* ---------- DASHBOARD ---------- */
+    function renderDashboard() {
+      const main = document.getElementById("admin-main");
+      const stats = Store.orderStats();
+      const products = Store.getProducts();
+      const orders = Store.getOrders();
+      const recent = orders.slice(0, 6);
+      const lowStock = products.filter((p) => (p.stock || 0) <= 5);
+      const statCard = (lbl, val, sub) =>
+        `<div class="stat"><div class="lbl">${esc(lbl)}</div><div class="val">${val}</div>${sub ? `<div class="sub">${esc(sub)}</div>` : ""}</div>`;
+      const recentRows = recent.length
+        ? recent.map((o) => `
+            <tr>
+              <td><strong>${esc(o.id)}</strong></td>
+              <td>${esc(o.customer && o.customer.name || "—")}</td>
+              <td>${itemCount(o)}</td>
+              <td>${Store.money(o.total)}</td>
+              <td>${paymentBadge(o)}</td>
+              <td>${statusBadge(o.status)}</td>
+              <td>${esc(fmtDate(o.createdAt))}</td>
+            </tr>`).join("")
+        : `<tr><td colspan="7" class="muted" style="text-align:center;padding:30px">No orders yet.</td></tr>`;
+      const lowRows = lowStock.length
+        ? lowStock.map((p) => `
+            <tr>
+              <td>${esc(p.name)}</td>
+              <td><strong style="color:${(p.stock || 0) <= 2 ? "var(--bad)" : "var(--warn)"}">${p.stock || 0}</strong></td>
+            </tr>`).join("")
+        : `<tr><td colspan="2" class="muted" style="text-align:center;padding:24px">All products well stocked.</td></tr>`;
+      main.innerHTML = `
+        <div class="admin-topbar">
+          <h2 style="margin:0">Dashboard</h2>
+          <span class="muted">${esc(todayStr())}</span>
+        </div>
+        <div class="stat-grid">
+          ${statCard("Total Orders", stats.count)}
+          ${statCard("Revenue", Store.money(stats.revenue))}
+          ${statCard("Products", products.length)}
+          ${statCard("Pending Orders", stats.pending)}
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Recent Orders</h3></div>
+          <table>
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody>${recentRows}</tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Low Stock</h3></div>
+          <table>
+            <thead><tr><th>Product</th><th>Stock</th></tr></thead>
+            <tbody>${lowRows}</tbody>
+          </table>
+        </div>`;
+    }
+
+    /* ---------- PRODUCTS ---------- */
+    function renderProductsTab() {
+      const main = document.getElementById("admin-main");
+      const products = Store.getProducts();
+      const rows = products.length
+        ? products.map((p) => `
+            <tr>
+              <td><img class="table-thumb" src="${attr(Store.productImg(p))}" alt="${attr(p.name)}"></td>
+              <td>${esc(p.name)}</td>
+              <td>${esc(p.category)}</td>
+              <td>${Store.money(p.price)}</td>
+              <td class="muted">${Store.money(p.mrp)}</td>
+              <td>${p.stock || 0}</td>
+              <td style="white-space:nowrap">
+                <button class="btn btn-outline btn-sm" data-edit="${attr(p.id)}">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-del="${attr(p.id)}" style="color:var(--bad)">Delete</button>
+              </td>
+            </tr>`).join("")
+        : `<tr><td colspan="7" class="muted" style="text-align:center;padding:30px">No products.</td></tr>`;
+      main.innerHTML = `
+        <div class="admin-topbar"><h2 style="margin:0">Products</h2></div>
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Products</h3>
+            <button class="btn btn-primary btn-sm" id="add-product">＋ Add Product</button>
+          </div>
+          <table>
+            <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>MRP</th><th>Stock</th><th>Actions</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>`;
+      document.getElementById("add-product").addEventListener("click", () => productModal(null));
+      main.querySelectorAll("[data-edit]").forEach((b) => b.addEventListener("click", () => productModal(b.getAttribute("data-edit"))));
+      main.querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => {
+        const id = b.getAttribute("data-del");
+        const p = Store.getProduct(id);
+        if (confirm(`Delete "${p ? p.name : id}"? This cannot be undone.`)) {
+          Store.deleteProduct(id);
+          Store.toast("Product deleted", "err");
+          renderProductsTab();
+        }
+      }));
+    }
+
+    function productModal(id) {
+      const editing = !!id;
+      const p = editing ? (Store.getProduct(id) || {}) : {};
+      const swatch = p.swatch || ["#7a1f2b", "#c79a3a"];
+      const badges = ["", "Bestseller", "New", "Bridal"];
+      const catOpts = CATS().map((c) => `<option value="${attr(c.id)}" ${p.category === c.id ? "selected" : ""}>${esc(c.name)}</option>`).join("");
+      const badgeOpts = badges.map((b) => `<option value="${attr(b)}" ${(p.badge || "") === b ? "selected" : ""}>${b === "" ? "None" : esc(b)}</option>`).join("");
+      const body = `
+        <form id="product-form" autocomplete="off">
+          <div class="field">
+            <label for="pf-name">Name</label>
+            <input type="text" id="pf-name" value="${attr(p.name || "")}" required>
+            <span class="err">Name is required.</span>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label for="pf-cat">Category</label><select id="pf-cat">${catOpts}</select></div>
+            <div class="field"><label for="pf-badge">Badge</label><select id="pf-badge">${badgeOpts}</select></div>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label for="pf-price">Price (₹)</label>
+              <input type="number" id="pf-price" min="0" value="${attr(p.price != null ? p.price : "")}" required>
+              <span class="err">Enter a valid price.</span>
+            </div>
+            <div class="field"><label for="pf-mrp">MRP (₹)</label><input type="number" id="pf-mrp" min="0" value="${attr(p.mrp != null ? p.mrp : "")}"></div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label for="pf-fabric">Fabric</label><input type="text" id="pf-fabric" value="${attr(p.fabric || "")}"></div>
+            <div class="field"><label for="pf-color">Colour</label><input type="text" id="pf-color" value="${attr(p.color || "")}"></div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label for="pf-stock">Stock</label><input type="number" id="pf-stock" min="0" value="${attr(p.stock != null ? p.stock : 10)}"></div>
+            <div class="field">
+              <label>Swatch Colours</label>
+              <div style="display:flex;gap:10px">
+                <input type="color" id="pf-swa" value="${attr(swatch[0] || "#7a1f2b")}" style="height:46px;padding:4px">
+                <input type="color" id="pf-swb" value="${attr(swatch[1] || "#c79a3a")}" style="height:46px;padding:4px">
+              </div>
+            </div>
+          </div>
+          <div class="field"><label for="pf-desc">Description</label><textarea id="pf-desc" rows="3">${esc(p.desc || "")}</textarea></div>
+        </form>`;
+      const foot = `
+        <button class="btn btn-ghost btn-sm" data-close>Cancel</button>
+        <button class="btn btn-primary btn-sm" id="pf-save">Save</button>`;
+      openModal(editing ? "Edit Product" : "Add Product", body, foot);
+      document.getElementById("pf-save").addEventListener("click", () => {
+        const name = document.getElementById("pf-name").value.trim();
+        const price = parseFloat(document.getElementById("pf-price").value);
+        const nameField = document.getElementById("pf-name").closest(".field");
+        const priceField = document.getElementById("pf-price").closest(".field");
+        nameField.classList.remove("invalid");
+        priceField.classList.remove("invalid");
+        let ok = true;
+        if (!name) { nameField.classList.add("invalid"); ok = false; }
+        if (!(price >= 0) || isNaN(price)) { priceField.classList.add("invalid"); ok = false; }
+        if (!ok) { Store.toast("Please fix the highlighted fields", "err"); return; }
+        const mrpVal = parseFloat(document.getElementById("pf-mrp").value);
+        const stockVal = parseInt(document.getElementById("pf-stock").value, 10);
+        const obj = {
+          id: editing ? p.id : uniqueId(slug(name)),
+          name,
+          category: document.getElementById("pf-cat").value,
+          price,
+          mrp: isNaN(mrpVal) ? price : mrpVal,
+          swatch: [document.getElementById("pf-swa").value, document.getElementById("pf-swb").value],
+          fabric: document.getElementById("pf-fabric").value.trim(),
+          color: document.getElementById("pf-color").value.trim(),
+          badge: document.getElementById("pf-badge").value,
+          stock: isNaN(stockVal) ? 0 : stockVal,
+          rating: editing && p.rating != null ? p.rating : 4.5,
+          desc: document.getElementById("pf-desc").value.trim()
+        };
+        Store.saveProduct(obj);
+        closeModal();
+        renderProductsTab();
+        Store.toast("Saved ❤", "ok");
+      });
+    }
+
+    /* ---------- ORDERS ---------- */
+    const STATUSES = ["pending", "confirmed", "shipped", "delivered", "cancelled"];
+    function statusSelect(o) {
+      const opts = STATUSES.map((s) => `<option value="${s}" ${o.status === s ? "selected" : ""}>${s.charAt(0).toUpperCase() + s.slice(1)}</option>`).join("");
+      return `<select class="input" data-status="${attr(o.id)}" style="min-width:150px;padding:8px 14px;font-size:.85rem">${opts}</select>`;
+    }
+
+    function renderOrdersTab() {
+      const main = document.getElementById("admin-main");
+      const orders = Store.getOrders();
+      const rows = orders.length
+        ? orders.map((o) => `
+            <tr>
+              <td><strong>${esc(o.id)}</strong></td>
+              <td>${esc(o.customer && o.customer.name || "—")}<br><span class="muted" style="font-size:.8rem">${esc(o.customer && o.customer.phone || "")}</span></td>
+              <td>${itemCount(o)}</td>
+              <td>${Store.money(o.total)}</td>
+              <td>${paymentBadge(o)}</td>
+              <td>${statusSelect(o)}</td>
+              <td>${esc(fmtDate(o.createdAt))}</td>
+              <td><button class="btn btn-outline btn-sm" data-view="${attr(o.id)}">View</button></td>
+            </tr>`).join("")
+        : `<tr><td colspan="8" class="muted" style="text-align:center;padding:30px">No orders yet.</td></tr>`;
+      main.innerHTML = `
+        <div class="admin-topbar"><h2 style="margin:0">Orders</h2></div>
+        <div class="panel">
+          <div class="panel-head"><h3>Orders</h3></div>
+          <table>
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th>View</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>`;
+      main.querySelectorAll("[data-status]").forEach((sel) => sel.addEventListener("change", () => {
+        Store.updateOrderStatus(sel.getAttribute("data-status"), sel.value);
+        Store.toast("Status updated", "ok");
+        renderOrdersTab();
+      }));
+      main.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => orderModal(b.getAttribute("data-view"))));
+    }
+
+    function orderModal(id) {
+      const o = Store.getOrder(id);
+      if (!o) { Store.toast("Order not found", "err"); return; }
+      const c = o.customer || {};
+      const addr = [c.address, c.line1, c.line2, c.city, c.state, c.pincode, c.zip].filter(Boolean).join(", ");
+      const itemRows = (o.items || []).map((it) => {
+        const line = it.lineTotal != null ? it.lineTotal : (it.price || 0) * (it.qty || 0);
+        return `<tr>
+            <td>${esc(it.name || it.id || "—")}</td>
+            <td>${esc(it.size || "—")}</td>
+            <td>${it.qty || 0}</td>
+            <td>${Store.money(line)}</td>
+          </tr>`;
+      }).join("") || `<tr><td colspan="4" class="muted" style="text-align:center">No items.</td></tr>`;
+      const body = `
+        <div style="margin-bottom:18px">
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+            ${statusBadge(o.status)} ${paymentBadge(o)}
+          </div>
+          <strong>${esc(c.name || "—")}</strong><br>
+          <span class="muted" style="font-size:.88rem">
+            ${c.phone ? esc(c.phone) + "<br>" : ""}
+            ${c.email ? esc(c.email) + "<br>" : ""}
+            ${addr ? esc(addr) : ""}
+          </span>
+        </div>
+        <table style="margin-bottom:16px">
+          <thead><tr><th>Item</th><th>Size</th><th>Qty</th><th>Total</th></tr></thead>
+          <tbody>${itemRows}</tbody>
+        </table>
+        <div style="font-size:.92rem">
+          <div style="display:flex;justify-content:space-between;padding:4px 0"><span class="muted">Subtotal</span><span>${Store.money(o.subtotal)}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0"><span class="muted">Shipping</span><span>${Store.money(o.shipping)}</span></div>
+          ${o.codFee ? `<div style="display:flex;justify-content:space-between;padding:4px 0"><span class="muted">COD Fee</span><span>${Store.money(o.codFee)}</span></div>` : ""}
+          ${o.discount ? `<div style="display:flex;justify-content:space-between;padding:4px 0"><span class="muted">Discount</span><span>- ${Store.money(o.discount)}</span></div>` : ""}
+          <div style="display:flex;justify-content:space-between;padding:10px 0 0;margin-top:6px;border-top:1px solid var(--line);font-weight:600;color:var(--maroon);font-size:1.1rem"><span>Total</span><span>${Store.money(o.total)}</span></div>
+        </div>
+        <div class="field" style="margin-top:18px;margin-bottom:0">
+          <label>Change Status</label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            ${STATUSES.map((s) => `<button class="btn btn-sm ${o.status === s ? "btn-primary" : "btn-outline"}" data-set-status="${s}">${s.charAt(0).toUpperCase() + s.slice(1)}</button>`).join("")}
+          </div>
+        </div>`;
+      const foot = `<button class="btn btn-ghost btn-sm" data-close>Close</button>`;
+      openModal("Order " + o.id, body, foot);
+      document.querySelectorAll("[data-set-status]").forEach((b) => b.addEventListener("click", () => {
+        Store.updateOrderStatus(o.id, b.getAttribute("data-set-status"));
+        Store.toast("Status updated", "ok");
+        closeModal();
+        renderOrdersTab();
+      }));
+    }
+
+    /* ---------- SETTINGS ---------- */
+    function renderSettingsTab() {
+      const main = document.getElementById("admin-main");
+      const b = B();
+      const admin = Store.getAdmin();
+      main.innerHTML = `
+        <div class="admin-topbar"><h2 style="margin:0">Settings</h2></div>
+        <div class="panel">
+          <div class="panel-head"><h3>Store Settings</h3></div>
+          <div style="padding:22px">
+            <div class="grid-2">
+              <div class="field"><label>Store Name</label><input type="text" value="${attr(b.name || "")} ${attr(b.by || "")}" readonly></div>
+              <div class="field"><label>WhatsApp</label><input type="text" value="${attr(b.whatsapp || "")}" readonly></div>
+              <div class="field"><label>Phone</label><input type="text" value="${attr(b.phone || "")}" readonly></div>
+              <div class="field"><label>Email</label><input type="text" value="${attr(b.email || "")}" readonly></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Change Admin Password</h3></div>
+          <div style="padding:22px">
+            <form id="admin-form" autocomplete="off">
+              <div class="field"><label>Current Username</label><input type="text" id="ad-cur" value="${attr(admin.user || "")}" readonly></div>
+              <div class="grid-2">
+                <div class="field"><label>New Username</label><input type="text" id="ad-user" value="${attr(admin.user || "")}"></div>
+                <div class="field"><label>New Password</label><input type="password" id="ad-pass" placeholder="New password"></div>
+              </div>
+              <div class="field" id="ad-confirm-field"><label>Confirm Password</label><input type="password" id="ad-confirm" placeholder="Re-type password"><span class="err">Passwords do not match.</span></div>
+              <button type="submit" class="btn btn-primary btn-sm">Update Credentials</button>
+            </form>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Data</h3></div>
+          <div style="padding:22px">
+            <p class="muted" style="margin-top:0">All store data (products, orders, admin credentials) is stored in this browser via localStorage. Clearing browser data will reset everything to defaults.</p>
+            <button class="btn btn-outline btn-sm" id="clear-orders" style="border-color:var(--bad);color:var(--bad)">Clear All Orders</button>
+          </div>
+        </div>`;
+      document.getElementById("admin-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const user = document.getElementById("ad-user").value.trim() || admin.user;
+        const pass = document.getElementById("ad-pass").value;
+        const confirmPass = document.getElementById("ad-confirm").value;
+        const cf = document.getElementById("ad-confirm-field");
+        cf.classList.remove("invalid");
+        if (!pass) { Store.toast("Enter a new password", "err"); return; }
+        if (pass !== confirmPass) { cf.classList.add("invalid"); Store.toast("Passwords do not match", "err"); return; }
+        Store.setAdmin(user, pass);
+        Store.toast("Updated", "ok");
+        document.getElementById("ad-pass").value = "";
+        document.getElementById("ad-confirm").value = "";
+        renderSettingsTab();
+      });
+      document.getElementById("clear-orders").addEventListener("click", () => {
+        if (confirm("Clear ALL orders? This cannot be undone.")) {
+          localStorage.setItem("vik_orders", "[]");
+          Store.toast("All orders cleared", "err");
+          renderSettingsTab();
+        }
+      });
+    }
+
+    /* ---------- ROOT RENDER ---------- */
+    function render() {
+      closeModal();
+      if (!Store.isAdmin()) renderLogin();
+      else renderShell();
+    }
+    render();
+  }
+
+  /* ============================================================
+     3) ROUTER
+     ============================================================ */
+  let suppressNextRoute = false;
+
+  function parseHash() {
+    let h = location.hash || '';
+    if (h.startsWith('#')) h = h.slice(1);     // drop leading '#'
+    // route is everything up to '?'; rest is the query
+    const qi = h.indexOf('?');
+    let route = qi >= 0 ? h.slice(0, qi) : h;
+    const query = qi >= 0 ? h.slice(qi + 1) : '';
+    route = route.replace(/^\/+/, '');          // '#/' and '#' both -> '' (home)
+    const params = new URLSearchParams(query);
+    return { route, params };
+  }
+
+  function router() {
+    if (suppressNextRoute) { suppressNextRoute = false; return; }
+
+    const { route, params } = parseHash();
+    let view;
+    switch (route) {
+      case '':         view = renderHome(); break;
+      case 'shop':     view = renderShop(params); break;
+      case 'product':  view = renderProduct(params); break;
+      case 'cart':     view = renderCart(); break;
+      case 'checkout': view = renderCheckout(); break;
+      case 'order':    view = renderConfirmation(params); break;
+      case 'track':    view = renderTrack(params); break;
+      case 'about':    view = renderAbout(); break;
+      case 'admin':    view = renderAdmin(); break;
+      default:         view = renderHome();
+    }
+
+    /* chrome visibility: admin is full-bleed */
+    const banner = document.querySelector('[data-banner]');
+    const navbar = document.querySelector('[data-navbar]');
+    const footer = document.querySelector('[data-footer]');
+    const fab = document.querySelector('[data-fab]');
+    const isAdmin = !!view.admin;
+    [banner, navbar, footer, fab].forEach(el => { if (el) el.style.display = isAdmin ? 'none' : ''; });
+
+    /* paint main */
+    const main = app();
+    main.className = isAdmin ? '' : (view.wrapClass || '');
+    main.innerHTML = view.html;
+
+    if (view.title) document.title = view.title;
+
+    /* run post-render wiring */
+    if (typeof view.wire === 'function') view.wire();
+
+    window.scrollTo(0, 0);
+
+    if (!isAdmin) {
+      Store.renderNavbar(view.nav || 'home');
+      Store.renderFooter();
+      Store.updateCartBadge();
+    }
+  }
+
+  window.addEventListener('hashchange', router);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', router);
+  } else {
+    router();
+  }
+})();
+</script>
+</body></html>
