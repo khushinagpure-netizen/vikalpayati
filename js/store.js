@@ -89,12 +89,13 @@
   const money = formatINR;
   const shippingFor = (subtotal) => (subtotal >= (B().freeShipAbove || 2999) || subtotal === 0) ? 0 : (B().shipFlat || 99);
 
-  /* ---------- orders ---------- */
-  function placeOrder(payload) {
+  /* ---------- orders (DUAL-MODE: live Supabase vs demo localStorage) ---------- */
+  // Build the order object (id-gen identical in both modes).
+  function buildOrder(payload) {
     const orders = read(K.orders, []);
     const seq = orders.length + 1;
     const id = "VP" + String(Date.now()).slice(-6) + String(seq).padStart(2, "0");
-    const order = {
+    return {
       id,
       createdAt: new Date().toISOString(),
       items: payload.items,
@@ -107,20 +108,50 @@
       payment: payload.payment,          // {method:'cod'|'online', status:'pending'|'paid', ref?}
       status: payload.payment.method === "online" && payload.payment.status === "paid" ? "confirmed" : "pending"
     };
+  }
+
+  async function placeOrder(payload) {
+    const order = buildOrder(payload);
+    if (window.VIK_LIVE) {
+      const saved = await window.VikBackend.insertOrder(order);
+      if (!saved) return null;
+      try { sessionStorage.setItem("vik_last_order", JSON.stringify(saved)); } catch (e) {}
+      return saved;
+    }
+    const orders = read(K.orders, []);
     orders.unshift(order);
     write(K.orders, orders);
     return order;
   }
-  const getOrders = () => read(K.orders, []);
-  const getOrder = (id) => read(K.orders, []).find(o => o.id === id) || null;
-  const updateOrderStatus = (id, status) => {
+
+  async function getOrders() {
+    if (window.VIK_LIVE) return (await window.VikBackend.listOrders()) || [];
+    return read(K.orders, []);
+  }
+
+  async function getOrder(id) {
+    if (window.VIK_LIVE) {
+      try {
+        const last = JSON.parse(sessionStorage.getItem("vik_last_order"));
+        if (last && last.id === id) return last;
+      } catch (e) {}
+      return null; // guests use the track flow (edge fn) for cross-device
+    }
+    return read(K.orders, []).find(o => o.id === id) || null;
+  }
+
+  async function updateOrderStatus(id, status) {
+    if (window.VIK_LIVE) return await window.VikBackend.setOrderStatus(id, status);
     const orders = read(K.orders, []);
     const o = orders.find(x => x.id === id);
     if (o) { o.status = status; if (status === "delivered" && o.payment.method === "cod") o.payment.status = "paid"; write(K.orders, orders); }
     return o;
-  };
-  function orderStats() {
-    const o = getOrders();
+  }
+
+  // Accepts an optional pre-fetched orders array (admin passes the live
+  // list); falls back to localStorage for demo mode.
+  function orderStats(ordersArg) {
+    const o = Array.isArray(ordersArg) ? ordersArg : read(K.orders, []);
     const revenue = o.filter(x => x.status !== "cancelled").reduce((s, x) => s + x.total, 0);
     const byStatus = {};
     o.forEach(x => { byStatus[x.status] = (byStatus[x.status] || 0) + 1; });

@@ -7,7 +7,6 @@ Store.updateCartBadge();
 
 const root = document.getElementById('confirm-root');
 const id = new URLSearchParams(location.search).get('id');
-const o = id ? Store.getOrder(id) : null;
 
 /* tracker step helper */
 function trackerHTML(status) {
@@ -19,6 +18,24 @@ function trackerHTML(status) {
       <div class="dot">${i < doneTo ? '✓' : i + 1}</div>${s}
     </div>`).join('')}</div>`;
 }
+
+/* In live mode the just-placed order lives in sessionStorage (guests have
+   no anon DB read); in demo mode it comes from localStorage. Both via the
+   now-async Store.getOrder. */
+async function resolveOrder() {
+  if (!id) return null;
+  if (window.VIK_LIVE) {
+    try {
+      const last = JSON.parse(sessionStorage.getItem('vik_last_order'));
+      if (last && last.id === id) return last;
+    } catch (e) {}
+    return null;
+  }
+  return await Store.getOrder(id);
+}
+
+(async function render() {
+const o = await resolveOrder();
 
 if (!o) {
   root.innerHTML = `
@@ -96,3 +113,4 @@ if (!o) {
       <a class="btn btn-gold" href="https://wa.me/919755816439?text=${waText}" target="_blank">Share on WhatsApp</a>
     </div>`;
 }
+})();

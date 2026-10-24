@@ -10,6 +10,11 @@
 
   let currentTab = "dashboard";
 
+  // Live-mode routing helpers (fall back to local Store in demo mode).
+  const LIVE = () => !!window.VIK_LIVE;
+  const isAuthed = () => LIVE() ? window.VikBackend.isAdminLive() : Store.isAdmin();
+  const signOut = () => { if (LIVE()) window.VikBackend.adminSignOut(); else Store.adminLogout(); };
+
   /* ---------- helpers ---------- */
   const esc = (s) => String(s == null ? "" : s)
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -88,6 +93,7 @@
      LOGIN
      ============================================================ */
   function renderLogin() {
+    const live = LIVE();
     app().innerHTML = `
       <div class="admin-login">
         <div class="box">
@@ -95,8 +101,8 @@
           <h3 style="text-align:center;margin-top:14px">Admin Login</h3>
           <form id="login-form" autocomplete="off">
             <div class="field">
-              <label for="lg-user">Username</label>
-              <input type="text" id="lg-user" placeholder="admin" autofocus>
+              <label for="lg-user">${live ? "Admin email" : "Username"}</label>
+              <input type="${live ? "email" : "text"}" id="lg-user" placeholder="${live ? "you@email.com" : "admin"}" autofocus>
             </div>
             <div class="field" id="lg-pass-field">
               <label for="lg-pass">Password</label>
@@ -105,17 +111,18 @@
             </div>
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
           </form>
-          <p class="muted" style="text-align:center;margin:14px 0 6px;font-size:.82rem">Demo: admin / vikalpayati123</p>
-          <p style="text-align:center;margin:0"><a href="index.html" style="color:var(--maroon);font-size:.88rem">← Back to store</a></p>
+          ${live ? "" : `<p class="muted" style="text-align:center;margin:14px 0 6px;font-size:.82rem">Demo: admin / vikalpayati123</p>`}
+          <p style="text-align:center;margin:${live ? "14px 0 0" : "0"}"><a href="index.html" style="color:var(--maroon);font-size:.88rem">← Back to store</a></p>
         </div>
       </div>`;
 
     const form = document.getElementById("login-form");
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const u = document.getElementById("lg-user").value.trim();
       const p = document.getElementById("lg-pass").value;
-      if (Store.adminLogin(u, p)) {
+      const ok = live ? await window.VikBackend.adminSignIn(u, p) : Store.adminLogin(u, p);
+      if (ok) {
         currentTab = "dashboard";
         render();
       } else {
@@ -160,7 +167,7 @@
       });
     });
     document.getElementById("logout-btn").addEventListener("click", () => {
-      Store.adminLogout();
+      signOut();
       render();
     });
 
@@ -177,11 +184,11 @@
   /* ============================================================
      DASHBOARD
      ============================================================ */
-  function renderDashboard() {
+  async function renderDashboard() {
     const main = document.getElementById("admin-main");
-    const stats = Store.orderStats();
     const products = Store.getProducts();
-    const orders = Store.getOrders();
+    const orders = await Store.getOrders();          // live → Supabase, demo → localStorage
+    const stats = Store.orderStats(orders);          // compute from the fetched list
     const recent = orders.slice(0, 6);
     const lowStock = products.filter((p) => (p.stock || 0) <= 5);
 
@@ -410,9 +417,13 @@
     return `<select class="input" data-status="${attr(o.id)}" style="min-width:150px;padding:8px 14px;font-size:.85rem">${opts}</select>`;
   }
 
-  function renderOrders() {
+  async function renderOrders() {
     const main = document.getElementById("admin-main");
-    const orders = Store.getOrders();
+    const orders = await Store.getOrders();
+    // index by id so the detail modal can read a full order without a
+    // second fetch (live mode has no single-order GET for admin).
+    const byId = {};
+    orders.forEach((o) => { byId[o.id] = o; });
 
     const rows = orders.length
       ? orders.map((o) => `
@@ -439,17 +450,16 @@
       </div>`;
 
     main.querySelectorAll("[data-status]").forEach((sel) =>
-      sel.addEventListener("change", () => {
-        Store.updateOrderStatus(sel.getAttribute("data-status"), sel.value);
-        Store.toast("Status updated", "ok");
+      sel.addEventListener("change", async () => {
+        const res = await Store.updateOrderStatus(sel.getAttribute("data-status"), sel.value);
+        Store.toast(res ? "Status updated" : "Could not update status", res ? "ok" : "err");
         renderOrders();
       }));
     main.querySelectorAll("[data-view]").forEach((b) =>
-      b.addEventListener("click", () => orderModal(b.getAttribute("data-view"))));
+      b.addEventListener("click", () => orderModal(byId[b.getAttribute("data-view")])));
   }
 
-  function orderModal(id) {
-    const o = Store.getOrder(id);
+  function orderModal(o) {
     if (!o) { Store.toast("Order not found", "err"); return; }
     const c = o.customer || {};
     const addr = [c.address, c.line1, c.line2, c.city, c.state, c.pincode, c.zip]
@@ -499,9 +509,9 @@
     openModal("Order " + o.id, body, foot);
 
     document.querySelectorAll("[data-set-status]").forEach((b) =>
-      b.addEventListener("click", () => {
-        Store.updateOrderStatus(o.id, b.getAttribute("data-set-status"));
-        Store.toast("Status updated", "ok");
+      b.addEventListener("click", async () => {
+        const res = await Store.updateOrderStatus(o.id, b.getAttribute("data-set-status"));
+        Store.toast(res ? "Status updated" : "Could not update status", res ? "ok" : "err");
         closeModal();
         renderOrders();
       }));
@@ -587,7 +597,7 @@
      ============================================================ */
   function render() {
     closeModal();
-    if (!Store.isAdmin()) renderLogin();
+    if (!isAuthed()) renderLogin();
     else renderShell();
   }
 

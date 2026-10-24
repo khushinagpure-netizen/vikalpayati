@@ -171,25 +171,112 @@ function customer() {
 }
 
 /* ---------- place order ---------- */
-function onPlace() {
+async function onPlace() {
   if (!validate()) {
     Store.toast('Please fix the highlighted fields', 'err');
     root.querySelector('.field.invalid input,.field.invalid textarea')?.focus();
     return;
   }
-  if (method() === 'online') openModal();
-  else finalize({ method: 'cod', status: 'pending' });
+  if (method() === 'online') {
+    if (window.VIK_LIVE) await payOnlineLive();
+    else openModal();            // demo: simulated pay modal (unchanged)
+  } else {
+    await finalize({ method: 'cod', status: 'pending' });
+  }
 }
 
-function finalize(payment) {
+async function finalize(payment) {
   const { items, subtotal, shipping, codFee, total } = compute();
-  const order = Store.placeOrder({
+  const order = await Store.placeOrder({
     items, subtotal, shipping, codFee, total,
     customer: customer(), payment
   });
+  if (!order) {
+    Store.toast('Could not place your order. Please try again.', 'err');
+    return;
+  }
   Store.clearCart();
   Store.updateCartBadge();
   window.location = 'order-confirmation.html?id=' + order.id;
+}
+
+/* ---------- live Razorpay flow ---------- */
+function loadRazorpay() {
+  return new Promise((resolve) => {
+    if (window.Razorpay) return resolve(true);
+    const s = document.createElement('script');
+    s.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    s.onload = () => resolve(true);
+    s.onerror = () => resolve(false);
+    document.head.appendChild(s);
+  });
+}
+
+async function payOnlineLive() {
+  const btn = document.getElementById('place-order');
+  btn.disabled = true;
+  const origLabel = btn.textContent;
+  btn.textContent = 'Starting payment…';
+
+  const restore = () => { btn.disabled = false; btn.textContent = origLabel; };
+
+  const ok = await loadRazorpay();
+  if (!ok) { Store.toast('Could not load the payment gateway. Please try again.', 'err'); restore(); return; }
+
+  const { items, subtotal, shipping, codFee, total } = compute();
+  const cust = customer();
+
+  // 1) Create the app order first (pending) so it exists in the DB.
+  const order = await Store.placeOrder({
+    items, subtotal, shipping, codFee, total,
+    customer: cust, payment: { method: 'online', status: 'pending' }
+  });
+  if (!order) { Store.toast('Could not create your order. Please try again.', 'err'); restore(); return; }
+
+  // 2) Create the Razorpay order server-side.
+  const rzp = await VikBackend.createRazorpayOrder(total, order.id);
+  if (!rzp || !rzp.razorpay_order_id) { Store.toast('Payment setup failed. Please try again.', 'err'); restore(); return; }
+
+  // 3) Open Razorpay checkout.
+  const options = {
+    key: rzp.key_id,
+    order_id: rzp.razorpay_order_id,
+    amount: rzp.amount,
+    currency: 'INR',
+    name: 'VIKALPAYATI',
+    description: 'Order ' + order.id,
+    prefill: { name: cust.name, email: cust.email, contact: cust.phone },
+    theme: { color: '#7a1f2b' },
+    modal: { ondismiss: restore },
+    handler: async function (resp) {
+      // 4) Verify the signature server-side (edge fn flips it to paid/confirmed).
+      const result = await VikBackend.verifyRazorpay({
+        orderId: order.id,
+        razorpay_order_id: resp.razorpay_order_id,
+        razorpay_payment_id: resp.razorpay_payment_id,
+        razorpay_signature: resp.razorpay_signature
+      });
+      if (!result || !result.ok) {
+        Store.toast('Payment could not be verified. Please contact us.', 'err');
+        restore();
+        return;
+      }
+      // reflect paid state in the stashed order for the confirmation page
+      order.payment = { method: 'online', status: 'paid', ref: resp.razorpay_payment_id };
+      order.status = 'confirmed';
+      try { sessionStorage.setItem('vik_last_order', JSON.stringify(order)); } catch (e) {}
+      Store.clearCart();
+      Store.updateCartBadge();
+      window.location = 'order-confirmation.html?id=' + order.id;
+    }
+  };
+
+  const rz = new Razorpay(options);
+  rz.on('payment.failed', function () {
+    Store.toast('Payment failed. You can try again.', 'err');
+    restore();
+  });
+  rz.open();
 }
 
 /* ---------- payment modal ---------- */
@@ -229,6 +316,6 @@ function doPay() {
   btn.textContent = 'Processing…';
   setTimeout(() => {
     const ref = 'TXN' + String(Date.now()).slice(-6);
-    finalize({ method: 'online', status: 'paid', ref });
+    finalize({ method: 'online', status: 'paid', ref });   // async; fire-and-forget (demo)
   }, 1000);
 }
