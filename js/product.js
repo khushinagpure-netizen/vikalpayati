@@ -64,6 +64,7 @@ if (!p) {
         <div class="pd-actions">
           <button class="btn btn-primary" id="add-cart">Add to Cart</button>
           <button class="btn btn-gold" id="buy-now">Buy Now</button>
+          <button class="btn btn-outline" id="enquire-btn" type="button">✉ Enquire about this</button>
         </div>
         <div class="pd-meta">
           <div class="row">🚚 Delivery in 3–7 days · Free above ₹2999</div>
@@ -109,6 +110,9 @@ if (!p) {
     Store.addToCart(p.id, getQty(), chosenSize);
     Store.updateCartBadge();
     location.href = 'checkout.html';
+  });
+  document.getElementById('enquire-btn').addEventListener('click', () => {
+    if (typeof window.openInquiry === 'function') openInquiry({ interest: 'Product Question', message: 'Hi! I\'m interested in: ' + p.name + ' (' + Store.money(p.price) + '). Please share availability & details.' });
   });
 
   /* related products — same category, fallback to any others */

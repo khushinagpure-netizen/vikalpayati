@@ -243,6 +243,7 @@
           ${link("shop.html?category=bridal", "bridal", "Bridal")}
           ${link("track.html", "track", "Track Order")}
           ${link("about.html", "about", "About")}
+          <a href="#" onclick="openInquiry();return false;">Enquire</a>
         </nav>
         <div class="nav-actions">
           <a class="icon-btn" href="https://wa.me/91${b.whatsapp}" target="_blank" title="WhatsApp us" aria-label="WhatsApp">

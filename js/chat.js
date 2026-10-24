@@ -167,9 +167,12 @@
 
   function renderQuick(){
     quick.innerHTML = '<span class="vq-label">Popular questions</span>' +
+      '<button data-inq="1">📝 Send a detailed inquiry</button>' +
       FAQ.map((f,i)=>'<button data-i="'+i+'">'+esc(f.q)+'</button>').join("");
   }
   quick.addEventListener("click", function(e){
+    var inq = e.target.closest("button[data-inq]");
+    if (inq) { closePanel(); if (typeof window.openInquiry === "function") window.openInquiry(); return; }
     var b = e.target.closest("button[data-i]"); if(!b) return;
     var f = FAQ[+b.getAttribute("data-i")];
     addMsg(esc(f.q), "user");
